@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readiculous - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <main>
+        <h1 class="main-title">Readiculous</h1>
+        <div class="profile-container">
+            <div class="profile-section">
+                <h2 class="profile-heading">הז'אנרים שלי:</h2>
+                <button class="update-button" onclick="openModal('genresModal')">עדכון</button>
+                <div class="profile-info">
+                    <div id="selectedGenres" class="selected-items"></div>
+                </div>
+            </div>
+            <div class="profile-section">
+                <h2 class="profile-heading">הסופרים שלי:</h2>
+                <button class="update-button" onclick="openModal('authorsModal')">עדכון</button>
+                <div class="profile-info">
+                    <div id="selectedAuthors" class="selected-items"></div>
+                </div>
+            </div>
+            <div class="profile-section">
+                <h2 class="profile-heading">פרטים אישיים:</h2>
+                <button class="update-button" id="updatePersonalInfo">עדכון</button>
+                <div class="profile-info">
+                    <label for="firstName">שם פרטי:</label>
+                    <input type="text" id="firstName" name="firstName" readonly>
+
+                    <label for="lastName">שם משפחה:</label>
+                    <input type="text" id="lastName" name="lastName" readonly>
+
+                    <label for="email">דואר אלקטרוני:</label>
+                    <input type="email" id="email" name="email" readonly>
+
+                    <label for="birthDate">תאריך לידה:</label>
+                    <input type="text" id="birthDate" name="birthDate" readonly>
+
+                    <label for="gender">מין:</label>
+                    <input type="text" id="gender" name="gender" readonly>
+
+                    <label for="password">סיסמא:</label>
+                    <input type="password" id="password" name="password" readonly>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Readiculous</p>
+    </footer>
+
+    <!-- Modal for Genres -->
+    <div id="genresModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('genresModal')">&times;</span>
+            <h2>בחר את הז'אנרים המועדפים עליך</h2>
+            <p>ניתן לבחור עד 5 ז'אנרים שונים.</p>
+            <div class="genres-grid">
+             <div class="genre-item">מדע בדיוני</div>
+             <div class="genre-item">רומן</div>
+            <div class="genre-item">קומדיה</div>
+            <div class="genre-item">ביוגרפיה</div>
+            <div class="genre-item">היסטוריה</div>
+            <div class="genre-item">ספרי בלשים</div>
+            <div class="genre-item">דרמה</div>
+            <div class="genre-item">סדרות ספרים</div>
+            <div class="genre-item">ילדים</div>
+            <div class="genre-item">קומיקס</div>
+            <div class="genre-item">אוטוביוגרפיה</div>
+            <div class="genre-item">פוליטיקה</div>            </div>
+             </div>
+        <p class="note">יש לבחור לפחות 2 ז'אנרים כדי שנוכל להמשיך להמליץ לכם על ספרים נוספים בהתאם להעדפותיכם :)</p>
+        <button class="save-button" id="saveGenres">Save</button>
+    </div>
+
+    <!-- Modal for Authors -->
+    <div id="authorsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('authorsModal')">&times;</span>
+            <h2>בחר את הסופרים המועדפים עליך</h2>
+            <div class="modal-items" id="authorsOptions">
+                <!-- Dynamic list of authors -->
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

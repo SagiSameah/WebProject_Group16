@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - Readiculous</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Book Title</h1>
+        <div id="bookDetails">
+            <p>Author: <span id="author"></span></p>
+            <p>Genre: <span id="genre"></span></p>
+            <p>Publication Year: <span id="year"></span></p>
+            <p>Number of Pages: <span id="pages"></span></p>
+            <p>Rating: <span id="rating"></span></p>
+            <p>Description: <span id="description"></span></p>
+        </div>
+        <div id="bookActions">
+            <button id="rateBook">Rate this Book</button>
+            <div id="ratingForm" style="display:none;">
+                <label for="rating">Rating (1-5):</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required>
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" required></textarea>
+                <button type="submit" id="submitRating">Submit</button>
+            </div>
+        </div>
+        <div id="bookComments">
+            <h2>Comments</h2>
+            <div id="commentsList">
+                <!-- Comments will be dynamically loaded here -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Readiculous</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
