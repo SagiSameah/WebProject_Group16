@@ -1,0 +1,274 @@
+.profile-container {
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-section {
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.profile-heading {
+    color: #79CDF1;
+    font-size: 1.5rem;
+    font-family: 'Istok Web', sans-serif;
+    flex: 1;
+    text-align: right; /* Align text to the right for RTL languages */
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.profile-info {
+    flex: 2;
+    text-align: right;
+}
+.profile-info textarea,
+.profile-info input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+    cursor: not-allowed; /* Indicate that the input is not editable */
+}
+.profile-info input:read-only {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.update-button {
+    background-color: #9533D2;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.update-button:hover {
+    background-color: #6c2499;
+}
+.selected-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.selected-items div {
+    background-color: #79CDF1;
+    color: white;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    border-radius: 5px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    max-width: 500px;
+    text-align: center;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-items div {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-items .selected {
+    background-color: #79CDF1;
+    color: white;
+}
+
+.modal-items .unselected {
+    background-color: #ccc;
+    color: black;
+}
+.item-list .item {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+.item-list .selected {
+    color: #79CDF1;
+}
+.save-button {
+    background-color: #9533D2;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.save-button:hover {
+    background-color: #6c2499;
+}
+
+  /* Responsive Design*/
+@media (max-width: 600px) {
+.login-box {
+        width: 80%;
+    }
+.form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+.login-box label {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+.login-box input {
+        width: 100%;
+    }
+.register-box {
+        width: 80%;
+    }
+.form-group {
+        flex-direction: column;
+    }
+.form-column {
+        width: 100%;
+    }
+nav a {
+        display: block;
+        margin: 0.5rem 0;
+    }
+.profile-container {
+        width: 100%;
+        padding: 1rem;
+    }
+.profile-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+.update-button {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+.profile-info {
+        width: 100%;
+    }
+/* Pop-up styles */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.option-item.selected {
+    color: #79CDF1; /* Site blue color */
+}
+
+.option-item:not(.selected) {
+    color: gray;
+}
+
+/* Profile info styles */
+.selected-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.selected-items .item {
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #79CDF1;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Genre selection grid */
+.genres-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin: 20px 0;
+}
+
+.genre-item {
+    background-color: #79CDF1;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+
+.genre-item.selected {
+    background-color: #003366; /* Darker blue to indicate selection */
+}
+
+.note {
+    color: #79CDF1;
+    font-size: 14px;
+    margin-top: 5px;
+}
+}
