@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="General.css">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
           rel="stylesheet">
+    <script src="scripts.js"></script>
 </head>
 <body>
 <header>
@@ -26,14 +27,14 @@
     <div class="login-box">
         <form id="loginForm">
             <div class="form-group">
-                <label for="username">שם משתמש:</label>
+                <label for="username">כתובת דוא"ל:</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="password">סיסמא:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">התחברות</button>
+            <button type="submit" onclick="validateAndRedirect()">התחברות</button>
         </form>
     </div>
     <p class="register-prompt">עוד לא רשום? <a href="register.html" class="register-link">הירשם כאן</a></p>

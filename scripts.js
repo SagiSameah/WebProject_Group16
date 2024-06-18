@@ -143,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch comments from the server or database
         // For demonstration, we'll use hardcoded data
         const comments = [
-            { user: 'User1', comment: 'Great book!' },
-            { user: 'User2', comment: 'Really enjoyed it.' }
+            {user: 'User1', comment: 'Great book!'},
+            {user: 'User2', comment: 'Really enjoyed it.'}
         ];
 
         // Update the comments list in the DOM
@@ -169,3 +169,6 @@ function openModal(modalId) {
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
 }
+
+
+
