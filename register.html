@@ -6,7 +6,6 @@
     <title>Readiculous - Register</title>
     <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="General.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -27,7 +26,8 @@
                 <div class="form-group">
                     <div class="form-column">
                         <label for="email">כתובת דואר אלקטרוני:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                        <span id="emailStatus" class="hidden icon">✔️</span>
 
                         <label for="firstName">שם פרטי:</label>
                         <input type="text" id="firstName" name="firstName" required>
@@ -37,7 +37,11 @@
                     </div>
                     <div class="form-column">
                         <label for="birthDate">תאריך לידה (dd/mm/yyyy):</label>
-                        <input type="text" id="birthDate" name="birthDate" required>
+                        <div class="birth-date-container">
+                            <input type="text" id="birthDate" name="birthDate" placeholder="dd/mm/yyyy" required>
+                            <span class="calendar-icon" onclick="showCalendar()">📅</span>
+                        </div>
+
 
                         <label for="password">בחירת סיסמא:</label>
                         <input type="password" id="password" name="password" required>
@@ -50,7 +54,6 @@
             </form>
         </div>
         <div class="quote-sction">
-            <img src="open book gif.gif" alt="Open Book">
             <p class="quote"> "Reading is essential for those who seek to rise above the ordinary"<br>
             Jim Rohn -</p>
         </div>
