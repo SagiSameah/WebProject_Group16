@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readiculous - Profile</title>
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="General.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-            <a href="HomePage.html">דף הבית</a>
-            <a href="Login.html">התחברות</a>
-            <a href="profile.html">פרופיל אישי</a>
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
             <a href="register.html">Register</a>
-            <a href="register.html">ספרים שדירגתי</a>
-            <a href="register.html">ספרים חדשים</a>
         </nav>
     </header>
     <main>
@@ -24,99 +20,118 @@
         <div class="profile-container">
             <div class="profile-section">
                 <h2 class="profile-heading">הז'אנרים שלי:</h2>
-                <button class="update-button" onclick="openModal('genresModal')">עדכון</button>
+                <button class="update-button" id="updateGenres">עדכון</button>
                 <div class="profile-info">
-                    <div id="selectedGenres" class="selected-items"></div>
+                    <div id="genresList" class="infinite-list"></div>
                 </div>
             </div>
             <div class="profile-section">
                 <h2 class="profile-heading">הסופרים שלי:</h2>
-                <button class="update-button" onclick="openModal('authorsModal')">עדכון</button>
+                <button class="update-button" id="updateAuthors">עדכון</button>
                 <div class="profile-info">
-                    <div id="selectedAuthors" class="selected-items"></div>
+                    <div id="authorsList" class="infinite-list"></div>
                 </div>
             </div>
             <div class="profile-section">
                 <h2 class="profile-heading">פרטים אישיים:</h2>
                 <button class="update-button" id="updatePersonalInfo">עדכון</button>
                 <div class="profile-info">
-    <div class="form-group">
-        <label for="firstName">שם פרטי:</label>
-        <input type="text" id="firstName" name="firstName" readonly>
-    </div>
-    <div class="form-group">
-        <label for="lastName">שם משפחה:</label>
-        <input type="text" id="lastName" name="lastName" readonly>
-    </div>
-    <div class="form-group">
-        <label for="email">דואר אלקטרוני:</label>
-        <input type="email" id="email" name="email" readonly>
-    </div>
-    <div class="form-group">
-        <label for="birthDate">תאריך לידה:</label>
-        <input type="text" id="birthDate" name="birthDate" readonly>
-    </div>
-    <div class="form-group">
-        <label for="gender">מין:</label>
-        <input type="text" id="gender" name="gender" readonly>
-    </div>
-    <div class="form-group">
-        <label for="password">סיסמא:</label>
-        <input type="password" id="password" name="password" readonly>
-    </div>
-    <button class="update-button">עדכן</button>
-</div>
+                    <label for="firstName">שם פרטי:</label>
+                    <input type="text" id="firstName" name="firstName" readonly>
+
+                    <label for="lastName">שם משפחה:</label>
+                    <input type="text" id="lastName" name="lastName" readonly>
+
+                    <label for="email">דואר אלקטרוני:</label>
+                    <input type="email" id="email" name="email" readonly>
+
+                    <label for="birthDate">תאריך לידה:</label>
+                    <input type="text" id="birthDate" name="birthDate" readonly>
+
+                    <label for="gender">מין:</label>
+                    <input type="text" id="gender" name="gender" readonly>
+
+                    <label for="password">סיסמא:</label>
+                    <input type="password" id="password" name="password" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup Window for Genres -->
+        <div id="genresPopup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closeGenresPopup">&times;</span>
+                <h3>Choose Your Favorite Genres</h3>
+                <ul id="genresOptions" class="options-list">
+                    <!-- Options will be dynamically inserted here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Popup Window for Authors -->
+        <div id="authorsPopup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closeAuthorsPopup">&times;</span>
+                <h3>Choose Your Favorite Authors</h3>
+                <ul id="authorsOptions" class="options-list">
+                    <!-- Options will be dynamically inserted here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Modal for Genres -->
+        <div id="genresModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('genresModal')">&times;</span>
+                <h2>בחר את הז'אנרים המועדפים עליך</h2>
+                <div class="search-container">
+                    <input type="text" placeholder="חפש ז'אנר">
+                </div>
+                <div class="modal-items">
+                    <div class="option-item">מדע בדיוני</div>
+                    <div class="option-item">רומן</div>
+                    <div class="option-item">קומדיה</div>
+                    <div class="option-item">ביוגרפיה</div>
+                    <div class="option-item">היסטוריה</div>
+                    <div class="option-item">ספרי בלשים</div>
+                    <div class="option-item">דרמה</div>
+                    <div class="option-item">סדרות ספרים</div>
+                    <div class="option-item">ילדים</div>
+                    <div class="option-item">קומיקס</div>
+                    <div class="option-item">אוטוביוגרפיה</div>
+                    <div class="option-item">פוליטיקה</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Authors -->
+        <div id="authorsModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('authorsModal')">&times;</span>
+                <h2>בחר את הסופרים המועדפים עליך</h2>
+                <div class="search-container">
+                    <input type="text" placeholder="חפש סופר">
+                </div>
+                <div class="modal-items">
+                    <div class="option-item">Author 1</div>
+                    <div class="option-item">Author 2</div>
+                    <div class="option-item">Author 3</div>
+                    <div class="option-item">Author 4</div>
+                    <div class="option-item">Author 5</div>
+                    <div class="option-item">Author 6</div>
+                    <div class="option-item">Author 7</div>
+                    <div class="option-item">Author 8</div>
+                    <div class="option-item">Author 9</div>
+                    <div class="option-item">Author 10</div>
+                    <div class="option-item">Author 11</div>
+                    <div class="option-item">Author 12</div>
+                </div>
             </div>
         </div>
     </main>
     <footer>
         <p>&copy; 2024 Readiculous</p>
     </footer>
-
-    <!-- Modal for Genres -->
-    <div id="genresModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('genresModal')">&times;</span>
-            <h2>בחר את הז'אנרים המועדפים עליך</h2>
-            <p>ניתן לבחור עד 5 ז'אנרים שונים</p>
-            <div class="genres-grid">
-            <div class="genre-item">מדע בדיוני</div>
-            <div class="genre-item">רומן</div>
-            <div class="genre-item">קומדיה</div>
-            <div class="genre-item">ביוגרפיה</div>
-            <div class="genre-item">היסטוריה</div>
-            <div class="genre-item">ספרי בלשים</div>
-            <div class="genre-item">דרמה</div>
-            <div class="genre-item">סדרות ספרים</div>
-            <div class="genre-item">ילדים</div>
-            <div class="genre-item">קומיקס</div>
-            <div class="genre-item">אוטוביוגרפיה</div>
-            <div class="genre-item">פוליטיקה</div>            </div>
-             </div>
-        <p class="note">יש לבחור לפחות 2 ז'אנרים כדי שנוכל להמשיך להמליץ לכם על ספרים נוספים בהתאם להעדפותיכם :)</p>
-        <button class="save-button" id="saveGenres">Save</button>
-    </div>
-
-    <!-- Modal for Authors -->
-    <div id="authorsModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('authorsModal')">&times;</span>
-            <h2>בחר את הסופרים המועדפים עליך</h2>
-            <p>ניתן לבחור עד 5 סופרים שונים</p>
-            <div class="genres-grid">
-            <div class="genre-item">א.ב. יהושע</div>
-            <div class="genre-item">ג'יי קיי רולינג</div>
-            <div class="genre-item">דניאל נוס</div>
-            <div class="genre-item">ד"ר סוס</div>
-            <div class="genre-item">חיים שפירא</div>
-            <div class="genre-item">סטיבן קינג</div>
-            <div class="genre-item">רחלי אליהו</div>
-            <div class="genre-item">שגיא שמח</div>
-            <div class="modal-items" id="authorsOptions"> </div>
-
-            </div>
-        </div>
-    </div>
     <script src="scripts.js"></script>
 </body>
 </html>

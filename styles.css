@@ -18,6 +18,37 @@ nav a {
     color: white;
     text-decoration: none;
 }
+body {
+    text-align: right;
+    direction: rtl;
+    font-family: 'Istok Web', 'Inter', 'Inknut Antiqua', sans-serif; /* Ensure the correct fonts are used */
+}
+
+.profile-section,
+.popup-content,
+.modal-content {
+    text-align: right;
+    direction: rtl;
+}
+
+.option-item {
+    text-align: right;
+    direction: rtl;
+}
+
+.search-container input {
+    text-align: right;
+    direction: rtl;
+}
+
+h2,
+label,
+input,
+button,
+.option-item {
+    text-align: right;
+    direction: rtl;
+}
 footer {
     background-color: #79CDF1;
     text-align: center;
