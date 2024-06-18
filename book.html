@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Details - Readiculous</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="book.css">
 </head>
 <body>
     <header>
-        <nav>
-            <a href="HomePage.html">Home</a>
-            <a href="profile.html">Profile</a>
-            <a href="register.html">Register</a>
+        <h1>Readiculous</h1>
+        <nav class="toolbar">
+            <a href="HomePage.html">דף הבית</a>
+            <a href="ratedBooks.html">ספרים שדירגתי</a>
+            <a href="newBooks.html">ספרים חדשים</a>
+            <a href="profile.html">פרופיל אישי</a>
         </nav>
     </header>
     <main>
-        <h1>Book Title</h1>
-        <div id="bookDetails">
-            <p>Author: <span id="author"></span></p>
-            <p>Genre: <span id="genre"></span></p>
-            <p>Publication Year: <span id="year"></span></p>
-            <p>Number of Pages: <span id="pages"></span></p>
-            <p>Rating: <span id="rating"></span></p>
-            <p>Description: <span id="description"></span></p>
+        <div class="search-box">
+            <input type="text" placeholder="חיפוש...">
+        </div>
+        <div class="book-content">
+            <div class="book-image">
+                <img src="book-placeholder.jpg" alt="Book Image">
+            </div>
+            <div class="book-info">
+                <p>סופר: <span id="author"></span></p>
+                <p>הוצאה לאור: <span id="publisher"></span></p>
+                <p>שנה: <span id="year"></span></p>
+                <p>ז'אנר: <span id="genre"></span></p>
+                <p>מס' עמודים: <span id="pages"></span></p>
+            </div>
+        </div>
+        <div class="book-extra-info">
+            <p>דירוג: <span id="bookRating"></span></p>
+            <p>מס' מדרגים: <span id="numRaters"></span></p>
+            <a href="discussions.html">צפה/י בדיונים אודות הספר</a>
         </div>
         <div id="bookActions">
             <button id="rateBook">Rate this Book</button>
             <div id="ratingForm" style="display:none;">
-                <label for="rating">Rating (1-5):</label>
-                <input type="number" id="rating" name="rating" min="1" max="5" required>
+                <label for="userRating">Rating (1-5):</label>
+                <input type="number" id="userRating" name="rating" min="1" max="5" required>
                 <label for="comment">Comment:</label>
                 <textarea id="comment" name="comment" required></textarea>
                 <button type="submit" id="submitRating">Submit</button>

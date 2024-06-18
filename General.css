@@ -23,3 +23,36 @@ h1.main-title {
     font-size: 5rem;
     font-family: 'Istok Web', sans-serif;
 }
+
+body {
+    text-align: right;
+    direction: rtl;
+    font-family: 'Istok Web', 'Inter', 'Inknut Antiqua', sans-serif; /* Ensure the correct fonts are used */
+}
+
+.profile-section,
+.popup-content,
+.modal-content {
+    text-align: right;
+    direction: rtl;
+}
+
+.option-item {
+    text-align: right;
+    direction: rtl;
+}
+
+.search-container input {
+    text-align: right;
+    direction: rtl;
+}
+
+h2,
+label,
+input,
+button,
+.option-item {
+    text-align: right;
+    direction: rtl;
+}
+

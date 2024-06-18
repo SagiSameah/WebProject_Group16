@@ -1,3 +1,35 @@
+body {
+    text-align: right;
+    direction: rtl;
+    font-family: 'Istok Web', 'Inter', 'Inknut Antiqua', sans-serif; /* Ensure the correct fonts are used */
+}
+
+.profile-section,
+.popup-content,
+.modal-content {
+    text-align: right;
+    direction: rtl;
+}
+
+.option-item {
+    text-align: right;
+    direction: rtl;
+}
+
+.search-container input {
+    text-align: right;
+    direction: rtl;
+}
+
+h2,
+label,
+input,
+button,
+.option-item {
+    text-align: right;
+    direction: rtl;
+}
+
 .profile-container {
     width: 80%;
     margin: 2rem auto;
@@ -144,6 +176,37 @@
 .save-button:hover {
     background-color: #6c2499;
 }
+
+/* Oval shaped buttons */
+.option-item {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, font-weight 0.3s;
+}
+
+/* Selected state */
+.option-item.selected {
+    background-color: #79CDF1;
+    font-weight: bold;
+}
+
+/* Search line */
+.search-container {
+    margin-bottom: 10px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 
   /* Responsive Design*/
 @media (max-width: 600px) {
