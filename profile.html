@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readiculous - Profile</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="General.css">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-            <a href="HomePage.html">Home</a>
-            <a href="profile.html">Profile</a>
+            <a href="HomePage.html">דף הבית</a>
+            <a href="profile.html">פרופיל אישי</a>
             <a href="register.html">Register</a>
+            <a href="register.html">ספרים שדירגתי</a>
+            <a href="register.html">ספרים חדשים</a>
         </nav>
     </header>
     <main>
@@ -36,24 +39,32 @@
                 <h2 class="profile-heading">פרטים אישיים:</h2>
                 <button class="update-button" id="updatePersonalInfo">עדכון</button>
                 <div class="profile-info">
-                    <label for="firstName">שם פרטי:</label>
-                    <input type="text" id="firstName" name="firstName" readonly>
-
-                    <label for="lastName">שם משפחה:</label>
-                    <input type="text" id="lastName" name="lastName" readonly>
-
-                    <label for="email">דואר אלקטרוני:</label>
-                    <input type="email" id="email" name="email" readonly>
-
-                    <label for="birthDate">תאריך לידה:</label>
-                    <input type="text" id="birthDate" name="birthDate" readonly>
-
-                    <label for="gender">מין:</label>
-                    <input type="text" id="gender" name="gender" readonly>
-
-                    <label for="password">סיסמא:</label>
-                    <input type="password" id="password" name="password" readonly>
-                </div>
+    <div class="form-group">
+        <label for="firstName">שם פרטי:</label>
+        <input type="text" id="firstName" name="firstName" readonly>
+    </div>
+    <div class="form-group">
+        <label for="lastName">שם משפחה:</label>
+        <input type="text" id="lastName" name="lastName" readonly>
+    </div>
+    <div class="form-group">
+        <label for="email">דואר אלקטרוני:</label>
+        <input type="email" id="email" name="email" readonly>
+    </div>
+    <div class="form-group">
+        <label for="birthDate">תאריך לידה:</label>
+        <input type="text" id="birthDate" name="birthDate" readonly>
+    </div>
+    <div class="form-group">
+        <label for="gender">מין:</label>
+        <input type="text" id="gender" name="gender" readonly>
+    </div>
+    <div class="form-group">
+        <label for="password">סיסמא:</label>
+        <input type="password" id="password" name="password" readonly>
+    </div>
+    <button class="update-button">עדכן</button>
+</div>
             </div>
         </div>
     </main>

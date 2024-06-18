@@ -17,7 +17,7 @@
 
 .register-prompt {
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 5rem;
 }
 .register-link {
     color: #9533D2;
@@ -55,8 +55,22 @@
         cursor: pointer;
         margin-top: 1rem;
         font-size: 1rem;
+        border-radius: 5px;
         transition: background-color 0.3s ease;
     }
 .register-button:hover {
         background-color: #6c2499;
     }
+.quote{
+font-family: 'Inknut Antiqua', serif;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.open-book {
+    max-width: 100%; /* Ensure the GIF doesn't exceed its original size */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensures the image is treated as a block-level element */
+    margin: 0 auto; /* Centers the image horizontally */
+    max-height: 10px; /* Adjust the maximum height as per your requirement */
+}
