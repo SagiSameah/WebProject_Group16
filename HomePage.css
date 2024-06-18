@@ -1,3 +1,113 @@
+/*.quote-section {*/
+/*    text-align: center;*/
+/*    margin-top: 0.1rem;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
+
+/*.quote {*/
+/*    font-family: 'Inknut Antiqua', serif;*/
+/*    font-size: 1.2rem;*/
+/*    margin-top: 1rem;*/
+/*}*/
+
+/*.search-container {*/
+/*    width: 100%;*/
+/*    text-align: center;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*#searchBox {*/
+/*    width: 500px;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    font-size: 16px;*/
+/*    color: #333;*/
+/*    background-color: #f0f0f0;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*#searchBox::placeholder {*/
+/*    color: #ccc;*/
+/*}*/
+
+/*.recommended-books {*/
+/*    width: 70%;*/
+/*    text-align: center;*/
+/*    margin: 30px auto;*/
+/*    padding: 5px 5px 50px 5px;*/
+/*    background-color: #f6f6f6;*/
+/*    border-radius: 5px;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*.section-title {*/
+/*    font-size: 20px;*/
+/*    color: #333;*/
+/*    margin-bottom: 15px;*/
+/*}*/
+
+/*.book-carousel {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.carousel-track-container {*/
+/*    overflow: hidden;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.carousel-track {*/
+/*    display: flex;*/
+/*    transition: transform 0.5s ease-in-out;*/
+/*    overflow: hidden;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.book-slide {*/
+/*    min-width: 33.33%; /*/
+/*    flex: 0 0 33.33%;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.book-slide img {*/
+/*    max-width: 100px;*/
+/*    max-height: 180px;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.carousel-nav {*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    background-color: rgba(0, 0, 0, 0.5);*/
+/*    color: white;*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    cursor: pointer;*/
+/*    font-size: 24px;*/
+/*    padding: 10px;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
+
+/*.carousel-nav:hover {*/
+/*    background-color: rgba(0, 0, 0, 0.7);*/
+/*}*/
+
+/*.prev {*/
+/*    left: 5px;*/
+/*}*/
+
+/*.next {*/
+/*    right: 5px;*/
+/*}*/
+
 .quote-section {
     text-align: center;
     margin-top: 0.1rem;
@@ -17,7 +127,7 @@
 }
 
 #searchBox {
-    width: 600px;
+    width: 500px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -28,15 +138,15 @@
 }
 
 #searchBox::placeholder {
-    color: #ccc; /* Light grey placeholder text */
+    color: #ccc;
 }
 
 .recommended-books {
-    width: 80%;
+    width: 70%;
     text-align: center;
-    margin-top: 30px;
-    padding: 5px;
-    background-color: #f0f0f0;
+    margin: 30px auto;
+    padding: 5px 5px 50px 5px;
+    background-color: #f6f6f6;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -47,3 +157,62 @@
     margin-bottom: 15px;
 }
 
+.book-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: calc(100% / 3 * 6); /* Adjust based on the number of total slides */
+}
+
+.book-slide {
+    min-width: 33.33%;
+    flex: 0 0 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-slide img {
+    max-width: 100px;
+    max-height: 180px;
+    border-radius: 5px;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-nav:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.prev {
+    left: 5px;
+}
+
+.next {
+    right: 5px;
+}
