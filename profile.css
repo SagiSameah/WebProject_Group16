@@ -30,6 +30,39 @@ button,
     direction: rtl;
 }
 
+/* Add this to your styles.css */
+
+/* Oval shaped buttons */
+.option-item {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, font-weight 0.3s;
+}
+
+/* Selected state */
+.option-item.selected {
+    background-color: #79CDF1;
+    font-weight: bold;
+}
+
+/* Search line */
+.search-container {
+    margin-bottom: 10px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
 .profile-container {
     width: 80%;
     margin: 2rem auto;
