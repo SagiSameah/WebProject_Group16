@@ -1,0 +1,25 @@
+header {
+    background-color: #79CDF1;
+    padding: 1rem;
+}
+nav a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #79CDF1;
+    text-align: center;
+    padding: 0.3rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+h1.main-title {
+    color: #79CDF1;
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Istok Web', sans-serif;
+}
