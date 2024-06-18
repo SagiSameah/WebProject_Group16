@@ -1,0 +1,49 @@
+.quote-section {
+    text-align: center;
+    margin-top: 0.1rem;
+    margin-bottom: 1rem;
+}
+
+.quote {
+    font-family: 'Inknut Antiqua', serif;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.search-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#searchBox {
+    width: 600px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f0f0f0;
+    margin: 0 auto;
+}
+
+#searchBox::placeholder {
+    color: #ccc; /* Light grey placeholder text */
+}
+
+.recommended-books {
+    width: 80%;
+    text-align: center;
+    margin-top: 30px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
