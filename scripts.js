@@ -1,174 +1,120 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Open modals
-    document.querySelector('#updateGenres').addEventListener('click', () => {
-        openModal('genresModal');
+    // Display initial rating stars
+    const rating = 4.5; // Example rating value
+    displayRatingStars(rating);
+
+    // Open rating modal
+    const rateBookButton = document.getElementById('rateBookButton');
+    const ratingModal = document.getElementById('ratingModal');
+    const closeRatingModal = document.getElementById('closeRatingModal');
+
+    rateBookButton.addEventListener('click', () => {
+        ratingModal.style.display = 'block';
     });
 
-    document.querySelector('#updateAuthors').addEventListener('click', () => {
-        openModal('authorsModal');
+    closeRatingModal.addEventListener('click', () => {
+        ratingModal.style.display = 'none';
     });
 
-    // Close modals
-    document.querySelector('#closeGenresPopup').addEventListener('click', () => {
-        closeModal('genresModal');
-    });
-
-    document.querySelector('#closeAuthorsPopup').addEventListener('click', () => {
-        closeModal('authorsModal');
-    });
-
-    // Close modals when clicking outside the modal content
     window.addEventListener('click', (event) => {
-        const genresModal = document.getElementById('genresModal');
-        const authorsModal = document.getElementById('authorsModal');
-
-        if (event.target === genresModal) {
-            closeModal('genresModal');
-        }
-
-        if (event.target === authorsModal) {
-            closeModal('authorsModal');
+        if (event.target === ratingModal) {
+            ratingModal.style.display = 'none';
         }
     });
 
-    // Handle option selection
-    const optionItems = document.querySelectorAll('.option-item');
-    optionItems.forEach(item => {
-        item.addEventListener('click', () => {
-            if (item.classList.contains('selected')) {
-                item.classList.remove('selected');
-            } else if (document.querySelectorAll('.option-item.selected').length < 5) {
-                item.classList.add('selected');
-            } else {
-                alert('ניתן לבחור עד 5 אפשרויות');
-            }
-
-            // Move selected items to the top
-            const container = item.parentElement;
-            const selectedItems = Array.from(container.querySelectorAll('.option-item.selected'));
-            selectedItems.forEach(selectedItem => container.prepend(selectedItem));
-        });
-    });
-
-    // Search functionality
-    document.querySelectorAll('.search-container input').forEach(input => {
-        input.addEventListener('input', (event) => {
-            const query = event.target.value.toLowerCase();
-            const items = event.target.parentElement.nextElementSibling.querySelectorAll('.option-item');
-            items.forEach(item => {
-                if (item.textContent.toLowerCase().includes(query)) {
-                    item.style.display = 'inline-block';
+    // Handle user rating stars
+    const userRatingStars = document.querySelectorAll('#userRatingStars .star');
+    userRatingStars.forEach(star => {
+        star.addEventListener('click', () => {
+            const ratingValue = star.getAttribute('data-value');
+            userRatingStars.forEach(s => {
+                if (s.getAttribute('data-value') <= ratingValue) {
+                    s.classList.add('full');
                 } else {
-                    item.style.display = 'none';
+                    s.classList.remove('full');
                 }
             });
+
+            // Here, you can send the rating value to the server or process it as needed
+            console.log('User rating:', ratingValue);
+            alert(`You rated this book ${ratingValue} stars!`);
+            ratingModal.style.display = 'none';
         });
     });
 
-    // Save selected genres
-    document.querySelector('#saveGenres').addEventListener('click', () => {
-        const selectedGenres = document.querySelectorAll('.genre-item.selected');
-        if (selectedGenres.length < 2) {
-            alert('יש לבחור לפחות 2 ז\'אנרים כדי שנוכל להמשיך להמליץ לכם על ספרים נוספים בהתאם להעדפותיכם :)');
-            return;
-        }
-
-        const genresList = Array.from(selectedGenres).map(item => item.textContent).join(', ');
-        document.getElementById('genresList').textContent = genresList;
-        closeModal('genresModal');
-    });
-
-    // Handle opening and closing of the rating form
-    document.querySelector('#rateBook').addEventListener('click', () => {
-        document.querySelector('#ratingForm').style.display = 'block';
-    });
-
-    // Handle form submission for rating
-    document.querySelector('#submitRating').addEventListener('click', (event) => {
-        event.preventDefault();
-        const rating = document.querySelector('#userRating').value;
-        const comment = document.querySelector('#comment').value;
-
-        // Validate the rating
-        if (rating < 1 || rating > 5) {
-            alert('Please enter a rating between 1 and 5.');
-            return;
-        }
-
-        // Submit the rating and comment (for demonstration purposes, we'll just log it)
-        console.log('Rating:', rating);
-        console.log('Comment:', comment);
-
-        // Clear the form
-        document.querySelector('#userRating').value = '';
-        document.querySelector('#comment').value = '';
-        document.querySelector('#ratingForm').style.display = 'none';
-
-        // Update the book rating display
-        // Assuming a function updateBookRating exists that updates the displayed rating
-        // updateBookRating(rating, comment);
-
-        alert('Thank you for your rating!');
-    });
-
-    // Assuming we have a function to load book details based on a search or selection
-    function loadBookDetails(bookId) {
-        // Fetch book details from the server or database
-        // For demonstration, we'll use hardcoded data
-        const bookDetails = {
-            author: 'Author Name',
-            publisher: 'Publisher Name',
-            year: '2023',
-            genre: 'Genre Name',
-            pages: '300',
-            rating: '4.5',
-            numRaters: '120'
-        };
-
-        // Update the book details in the DOM
-        document.getElementById('author').textContent = bookDetails.author;
-        document.getElementById('publisher').textContent = bookDetails.publisher;
-        document.getElementById('year').textContent = bookDetails.year;
-        document.getElementById('genre').textContent = bookDetails.genre;
-        document.getElementById('pages').textContent = bookDetails.pages;
-        document.getElementById('bookRating').textContent = bookDetails.rating;
-        document.getElementById('numRaters').textContent = bookDetails.numRaters;
+    // Function to open a popup
+    function openPopup(popupId) {
+        document.getElementById(popupId).style.display = 'block';
     }
 
-    // Example: Load book details for a specific book ID
-    loadBookDetails(1);
+    // Function to close a popup
+    function closePopup(popupId) {
+        document.getElementById(popupId).style.display = 'none';
+    }
 
-    // Assuming we have a function to load comments
-    function loadComments(bookId) {
-        // Fetch comments from the server or database
-        // For demonstration, we'll use hardcoded data
-        const comments = [
-            {user: 'User1', comment: 'Great book!'},
-            {user: 'User2', comment: 'Really enjoyed it.'}
-        ];
+    // Event listeners for update buttons
+    document.getElementById('updateGenres').addEventListener('click', () => {
+        openPopup('genresPopup');
+    });
 
-        // Update the comments list in the DOM
-        const commentsList = document.getElementById('commentsList');
-        commentsList.innerHTML = ''; // Clear existing comments
-        comments.forEach(comment => {
-            const commentElement = document.createElement('div');
-            commentElement.classList.add('comment');
-            commentElement.innerHTML = `<strong>${comment.user}:</strong> ${comment.comment}`;
-            commentsList.appendChild(commentElement);
+    document.getElementById('updateAuthors').addEventListener('click', () => {
+        openPopup('authorsPopup');
+    });
+
+    document.getElementById('updatePersonalInfo').addEventListener('click', () => {
+        openPopup('personalInfoPopup');
+    });
+
+    // Event listeners for close buttons
+    document.getElementById('closeGenresPopup').addEventListener('click', () => {
+        closePopup('genresPopup');
+    });
+
+    document.getElementById('closeAuthorsPopup').addEventListener('click', () => {
+        closePopup('authorsPopup');
+    });
+
+    // Close the popup if the user clicks outside of it
+    window.addEventListener('click', (event) => {
+        if (event.target.classList.contains('popup')) {
+            event.target.style.display = 'none';
+        }
+    });
+
+    // Example options for genres and authors
+    const genres = ['Sci-Fi', 'Romance', 'Comedy', 'Biography', 'History', 'Detective', 'Drama', 'Series', 'Children', 'Comics', 'Autobiography', 'Politics'];
+    const authors = ['Author 1', 'Author 2', 'Author 3', 'Author 4', 'Author 5', 'Author 6', 'Author 7', 'Author 8', 'Author 9', 'Author 10', 'Author 11', 'Author 12'];
+
+    // Populate the options
+    function populateOptions(listId, options) {
+        const list = document.getElementById(listId);
+        options.forEach(option => {
+            const li = document.createElement('li');
+            li.textContent = option;
+            list.appendChild(li);
         });
     }
 
-    // Example: Load comments for a specific book ID
-    loadComments(1);
+    populateOptions('genresOptions', genres);
+    populateOptions('authorsOptions', authors);
 });
 
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
+function displayRatingStars(rating) {
+    const starsContainer = document.getElementById('stars-container');
+    starsContainer.innerHTML = ''; // Clear any existing stars
+
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < fullStars; i++) {
+        starsContainer.innerHTML += '<span class="star full">&#9733;</span>'; // Full star
+    }
+
+    if (halfStar) {
+        starsContainer.innerHTML += '<span class="star half">&#9734;</span>'; // Half star (outline star)
+    }
+
+    for (let i = fullStars + (halfStar ? 1 : 0); i < 5; i++) {
+        starsContainer.innerHTML += '<span class="star">&#9734;</span>'; // Empty star
+    }
 }
-
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
-
-
-

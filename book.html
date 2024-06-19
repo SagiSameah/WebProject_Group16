@@ -1,49 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Details - Readiculous</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Readiculous - Book</title>
+    <link rel="stylesheet" href="book.css">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-            <a href="Login.html">Home</a>
-            <a href="profile.html">Profile</a>
-            <a href="register.html">Register</a>
+            <a href="HomePage.html">דף הבית</a>
+            <a href="profile.html">פרופיל אישי</a>
+            <a href="register.html">ספרים שדירגתי</a>
+            <a href="book.html">ספרים חדשים</a>
         </nav>
     </header>
     <main>
-        <h1>Book Title</h1>
-        <div id="bookDetails">
-            <p>Author: <span id="author"></span></p>
-            <p>Genre: <span id="genre"></span></p>
-            <p>Publication Year: <span id="year"></span></p>
-            <p>Number of Pages: <span id="pages"></span></p>
-            <p>Rating: <span id="rating"></span></p>
-            <p>Description: <span id="description"></span></p>
-        </div>
-        <div id="bookActions">
-            <button id="rateBook">Rate this Book</button>
-            <div id="ratingForm" style="display:none;">
-                <label for="rating">Rating (1-5):</label>
-                <input type="number" id="rating" name="rating" min="1" max="5" required>
-                <label for="comment">Comment:</label>
-                <textarea id="comment" name="comment" required></textarea>
-                <button type="submit" id="submitRating">Submit</button>
+        <h1 class="main-title">Readiculous</h1>
+        <div class="book-container">
+            <div class="book-details">
+                <h2 id="bookName">Example Book Title</h2>
+                <p><span class="property-title">מחבר:</span> <span id="author">Author Name</span></p>
+                <p><span class="property-title">מוציא לאור:</span> <span id="publisher">Publisher Name</span></p>
+                <p><span class="property-title">שנה:</span> <span id="year">2023</span></p>
+                <p><span class="property-title">ז'אנר:</span> <span id="genre">Genre Name</span></p>
+                <p><span class="property-title">עמודים:</span> <span id="pages">300</span></p>
+                <p>
+                    <span class="property-title">דירוג:</span>
+                    <span id="rating">4.5</span>
+                    <span id="stars-container"></span>
+                    <span>(120 מדרגים)</span>
+                </p>
+                <div class="rate-button-container">
+                    <button id="rateBookButton">דרג את הספר</button>
+                </div>
             </div>
-        </div>
-        <div id="bookComments">
-            <h2>Comments</h2>
-            <div id="commentsList">
-                <!-- Comments will be dynamically loaded here -->
+            <div class="book-image">
+                <img src="example-book.jpg" alt="Example Book">
             </div>
         </div>
     </main>
     <footer>
         <p>&copy; 2024 Readiculous</p>
     </footer>
+
+    <!-- Rating Modal -->
+    <div id="ratingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeRatingModal">&times;</span>
+            <h2>בחר דירוג:</h2>
+            <div id="userRatingStars" class="stars-container">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+        </div>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
