@@ -1,4 +1,4 @@
-body {
+/*body {
     direction: rtl;
     text-align: right;
     font-family: Arial, sans-serif;
@@ -18,15 +18,14 @@ header nav {
 header nav a {
     margin: 0 15px;
     text-decoration: none;
-    color: #000;
-    font-weight: bold;
+    color: #ffffff;
 }
 
 h1 {
     text-align: center;
     margin-top: 20px;
     color: #333;
-}
+}*/
 
 .book-container {
     max-width: 800px;
