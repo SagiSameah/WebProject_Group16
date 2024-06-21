@@ -106,7 +106,7 @@ font-family: 'Inknut Antiqua', serif;
 
 .calendar-icon {
     position: absolute;
-    left: 70px;
+    left: 60px;
     top: 33%;
     transform: translateY(-50%);
     cursor: pointer;

@@ -6,62 +6,61 @@
     <title>Readiculous - Register</title>
     <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="General.css">
-    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="HomePage.html">דף הבית</a>
-            <a href="Login.html">התחברות</a>
-            <a href="profile.html">פרופיל אישי</a>
-            <a href="register.html">הרשמה</a>
-            <a href="register.html">ספרים שדירגתי</a>
-            <a href="book.html">ספרים חדשים</a>
-        </nav>
-    </header>
-    <main>
-        <h1 class="main-title">Readiculous</h1>
-        <h2 class="subtitle">הרשמה כמשתמש חדש</h2>
-        <div class="register-box">
-            <form id="registerForm">
-                <div class="form-group">
-                    <div class="form-column">
-                        <label for="email">כתובת דואר אלקטרוני:</label>
-                        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-                        <span id="emailStatus" class="hidden icon">✔️</span>
+<header>
+    <nav>
+        <a href="HomePage.html">דף הבית</a>
+        <a href="Login.html">התחברות</a>
+        <a href="profile.html">פרופיל אישי</a>
+        <a href="register.html">הרשמה</a>
+        <a href="register.html">ספרים שדירגתי</a>
+        <a href="book.html">ספרים חדשים</a>
+    </nav>
+</header>
+<main>
+    <h1 class="main-title">Readiculous</h1>
+    <h2 class="subtitle">הרשמה כמשתמש חדש</h2>
+    <div class="register-box">
+        <form id="registerForm">
+            <div class="form-group">
+                <div class="form-column">
+                    <label for="email">כתובת דואר אלקטרוני:</label>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
 
-                        <label for="firstName">שם פרטי:</label>
-                        <input type="text" id="firstName" name="firstName" required>
+                    <label for="firstName">שם פרטי:</label>
+                    <input type="text" id="firstName" name="firstName" required>
 
-                        <label for="lastName">שם משפחה:</label>
-                        <input type="text" id="lastName" name="lastName" required>
-                    </div>
-                    <div class="form-column">
-                        <label for="birthDate">תאריך לידה (dd/mm/yyyy):</label>
-                        <div class="birth-date-container">
-                            <input type="text" id="birthDate" name="birthDate" placeholder="dd/mm/yyyy" required>
-                            <span class="calendar-icon" onclick="showCalendar()">📅</span>
-                        </div>
-
-
-                        <label for="password">בחירת סיסמא:</label>
-                        <input type="password" id="password" name="password" required>
-
-                        <label for="confirmPassword">וידוא סיסמא:</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" required>
-                    </div>
+                    <label for="lastName">שם משפחה:</label>
+                    <input type="text" id="lastName" name="lastName" required>
                 </div>
-                <button type="submit" class="register-button">הרשמה</button>
-            </form>
-        </div>
-        <div class="quote-sction">
-            <p class="quote"> "Reading is essential for those who seek to rise above the ordinary"<br>
+                <div class="form-column">
+                    <label for="birthDate">תאריך לידה (dd/mm/yyyy):</label>
+                    <div class="birth-date-container">
+                        <input type="text" id="birthDate" name="birthDate" placeholder="dd/mm/yyyy" required
+                               onclick="showCalendar()">
+                        <span class="calendar-icon" onclick="showCalendar()">📅</span>
+                    </div>
+                    <label for="password">בחירת סיסמא:</label>
+                    <input type="password" id="password" name="password" required>
+                    <label for="confirmPassword">וידוא סיסמא:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+            </div>
+            <button type="submit" class="register-button">הרשמה</button>
+
+        </form>
+    </div>
+    <div class="quote-sction">
+        <p class="quote"> "Reading is essential for those who seek to rise above the ordinary"<br>
             Jim Rohn -</p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Readiculous</p>
-    </footer>
-    <script src="scripts.js"></script>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Readiculous</p>
+</footer>
+<script src="register.js"></script>
 </body>
 </html>

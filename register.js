@@ -1,99 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.getElementById("email");
+    const firstNameInput = document.getElementById("firstName");
+    const lastNameInput = document.getElementById("lastName");
     const passwordInput = document.getElementById("password");
     const confirmPasswordInput = document.getElementById("confirmPassword");
     const birthDateInput = document.getElementById("birthDate");
-    const form = document.getElementById("registrationForm");
-    const errorMessages = document.getElementById("errorMessages");
+    const form = document.getElementById("registerForm");
+    document.getElementById("birthDate").addEventListener("click", showCalendar);
+    document.querySelector(".calendar-icon").addEventListener("click", showCalendar);
 
-     // if (emailInput.value === '' || name.value === '' || passwordInput.value === '' ){
-     //        msg.innerHTML = 'Please enter all fields'
-     //        msg.classList.add('error')
-     //        setTimeout(() => {
-     //           msg.innerHTML = ''
-     //           msg.classList.remove('error')
-     //        }, 2000)
-     //    }
-
-    emailInput.addEventListener("input", validateEmail);
-    passwordInput.addEventListener("input", validatePassword);
-    confirmPasswordInput.addEventListener("input", validateConfirmPassword);
-    birthDateInput.addEventListener("input", validateBirthDate);
 
     form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent default form submission
         if (!validateForm()) {
-            event.preventDefault();
+            return; // Prevent form submission if validation fails
         }
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = 'HomePage.html';
     });
 
     function validateEmail() {
-        const emailStatus = document.getElementById("emailStatus");
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailPattern.test(emailInput.value)) {
-            emailStatus.classList.remove("hidden", "invalid");
-            emailStatus.classList.add("valid");
-        } else {
-            emailStatus.classList.remove("hidden", "valid");
-            emailStatus.classList.add("invalid");
-        }
+        return emailPattern.test(emailInput.value);
     }
 
-function validatePassword() {
-    const passwordStatus = document.getElementById("passwordStatus");
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-    if (passwordPattern.test(passwordInput.value)) {
-        passwordStatus.classList.remove("hidden", "invalid");
-        passwordStatus.classList.add("valid");
-    } else {
-        passwordStatus.classList.remove("hidden", "valid");
-        passwordStatus.classList.add("invalid");
+    function validatePassword() {
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        return passwordPattern.test(passwordInput.value);
     }
-}
 
-function validateConfirmPassword() {
-    const confirmPasswordStatus = document.getElementById("confirmPasswordStatus");
-    const confirmPasswordInput = document.getElementById("confirmPassword");
-    const passwordInput = document.getElementById("password");
-
-    if (confirmPasswordInput.value === passwordInput.value && confirmPasswordInput.value !== "") {
-        confirmPasswordStatus.classList.remove("hidden", "invalid");
-        confirmPasswordStatus.classList.add("valid");
-        confirmPasswordStatus.textContent = ''; // Clear any previous error message
-    } else {
-        confirmPasswordStatus.classList.remove("hidden", "valid");
-        confirmPasswordStatus.classList.add("invalid");
-        confirmPasswordStatus.textContent = "Passwords don't match";
+    function validateConfirmPassword() {
+        return confirmPasswordInput.value === passwordInput.value && confirmPasswordInput.value !== "";
     }
-}
-
 
     function validateBirthDate() {
-        const birthDateStatus = document.getElementById("birthDateStatus");
         const birthDatePattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-        if (birthDatePattern.test(birthDateInput.value)) {
-            birthDateStatus.classList.remove("hidden", "invalid");
-            birthDateStatus.classList.add("valid");
-        } else {
-            birthDateStatus.classList.remove("hidden", "valid");
-            birthDateStatus.classList.add("invalid");
-        }
+        return birthDatePattern.test(birthDateInput.value);
     }
 
     function validateForm() {
-        validateEmail();
-        validatePassword();
-        validateConfirmPassword();
-        validateBirthDate();
+        let errorMessage = "";
+        if (!validateEmail()) {
+            errorMessage += "Please enter a valid email address\n";
+        }
+        if (!validatePassword()) {
+            errorMessage += "Password must be at least 8 characters and contain an uppercase letter, lowercase letter, and one number\n";
+        }
+        if (!validateConfirmPassword()) {
+            errorMessage += "\nPasswords do not match\n";
+        }
+        if (!validateBirthDate()) {
+            errorMessage += "\nPlease enter a valid birth date\n";
+        }
+        if (!firstNameInput.value.trim() || !lastNameInput.value.trim()) {
+            errorMessage += "Please fill in all required fields.\n";
+        }
 
-        const isValid = document.querySelectorAll('.valid').length === 4;
-
-        if (!isValid) {
-            errorMessages.textContent = "Please fix the errors in the form.";
+        if (errorMessage) {
+            showModal(errorMessage);
             return false;
         }
         return true;
     }
+
+    function showModal(message) {
+        const modal = document.createElement("div");
+        modal.style.position = "fixed";
+        modal.style.left = "50%";
+        modal.style.top = "50%";
+        modal.style.transform = "translate(-50%, -50%)";
+        modal.style.backgroundColor = "white";
+        modal.style.padding = "20px";
+        modal.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
+        modal.style.zIndex = "1000";
+        modal.style.maxWidth = "300px";
+        modal.style.textAlign = "center";
+        modal.style.borderRadius = "8px";
+        modal.textContent = message;
+
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "Close";
+        closeButton.style.marginTop = "10px";
+        closeButton.addEventListener("click", () => {
+            document.body.removeChild(modal);
+        });
+
+        modal.appendChild(closeButton);
+        document.body.appendChild(modal);
+    }
+});
 
 function showCalendar() {
     const birthDateInput = document.getElementById("birthDate");
@@ -101,7 +96,7 @@ function showCalendar() {
     const calendar = document.createElement("input");
     calendar.type = "date";
     calendar.style.position = "absolute";
-    calendar.style.visibility = "hidden";
+    calendar.style.visibility = "visible";
 
     // Ensure calendar is removed if already present
     const existingCalendar = document.querySelector(".calendar");
@@ -122,6 +117,3 @@ function showCalendar() {
     // Add a class to identify the calendar
     calendar.classList.add("calendar");
 }
-
-    ;
-});
