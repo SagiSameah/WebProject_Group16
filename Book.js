@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     star.addEventListener('click', function() {
         const newRating = 5 - index;
         alert(`You rated this book ${newRating} stars!`);
-        updateRatersCount();
         updateAverageRating(newRating);
+        updateRatersCount();
         modal.style.display = 'none';
     });
 });
