@@ -112,6 +112,12 @@ font-family: 'Inknut Antiqua', serif;
     cursor: pointer;
 }
 
+.calendar {
+    position: absolute;
+    top: 75%; /* Position below the input field */
+    right: 55%; /* Align with the left edge of the input field */
+}
+
 #birthDate {
     padding-left: 10px;
 }
