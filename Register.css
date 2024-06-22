@@ -68,11 +68,11 @@ font-family: 'Inknut Antiqua', serif;
 }
 
 .open-book {
-    max-width: 100%; /* Ensure the GIF doesn't exceed its original size */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Ensures the image is treated as a block-level element */
-    margin: 0 auto; /* Centers the image horizontally */
-    max-height: 10px; /* Adjust the maximum height as per your requirement */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-height: 10px;
 }
 
 .valid {
@@ -114,8 +114,8 @@ font-family: 'Inknut Antiqua', serif;
 
 .calendar {
     position: absolute;
-    top: 75%; /* Position below the input field */
-    right: 55%; /* Align with the left edge of the input field */
+    top: 100%;
+    right: 55%;
 }
 
 #birthDate {
@@ -128,7 +128,7 @@ font-family: 'Inknut Antiqua', serif;
 }
 
 #email{
-    padding-left: 10px; /* Adjust as needed */
+    padding-left: 10px;
 }
 
 #email::placeholder{
