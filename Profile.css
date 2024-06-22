@@ -68,8 +68,8 @@
 
 .profile-info label,
 .profile-info input {
-    display: block; /* Ensure labels and inputs are block elements */
-    margin-top: 5px; /* Add some space above the elements */
+    display: block;
+    margin-top: 5px;
 }
 
 .selected-items {

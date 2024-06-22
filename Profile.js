@@ -160,4 +160,5 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.removeChild(popup);
         }, 3000);
     }
+
 });
