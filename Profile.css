@@ -164,108 +164,14 @@
     cursor: pointer;
     border: 1px solid #ccc;
     background-color: #f0f0f0; /* Default background color */
-    text-align: center; /* Center text */
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
+
 .popup-options li.selected {
-    background-color: #3498db; /* Selected option background color */
-    color: #fff; /* Selected option text color */
-    font-weight: bold; /* Selected option text bold */
-}
-.popup-options li:not(.selected) {
-    color: #333; /* Unselected option text color */
-    font-style: italic; /* Unselected option text italic */
-}
-.popup-options li:hover {
-    background-color: #ddd; /* Hover effect */
-}
-
-/* Close button styling */
-.close-popup {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    color: #888;
-    font-size: 24px;
-}
-.close-popup:hover {
-    color: #555;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    nav a {
-        display: block;
-        margin: 0.5rem 0;
-    }
-
-    .profile-container {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    .profile-section {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .update-button {
-        margin-left: 0;
-        margin-top: 1rem;
-    }
-
-    .profile-info {
-        width: 100%;
-    }
-}
-
-
-/* General Styles
-body {
-    direction: rtl;
-    text-align: right;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #F5F5F5;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header {
-    background-color: #79CDF1;
-    padding: 1rem;
-}
-
-nav a {
-    margin: 0 1rem;
+    background-color: #79CDF1; /* Color for selected items */
     color: white;
-    text-decoration: none;
 }
 
-footer {
-    background-color: #79CDF1;
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+.popup-options li:hover {
+    background-color: #e0e0e0; /* Hover effect */
 }
-
-h1.main-title {
-    color: #79CDF1;
-    text-align: center;
-    font-size: 2.5rem;
-    font-family: 'Istok Web', sans-serif;
-}
-
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}*/

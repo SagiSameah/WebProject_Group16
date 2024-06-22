@@ -23,14 +23,14 @@
                 <h2 class="profile-heading">הז'אנרים שלי:</h2>
                 <button class="update-button" id="updateGenres">עדכון</button>
                 <div class="profile-info">
-                    <div id="genresList" class="infinite-list"></div>
+                    <div id="selectedGenres" class="selected-items"></div>
                 </div>
             </div>
             <div class="profile-section">
                 <h2 class="profile-heading">הסופרים שלי:</h2>
                 <button class="update-button" id="updateAuthors">עדכון</button>
                 <div class="profile-info">
-                    <div id="authorsList" class="infinite-list"></div>
+                    <div id="selectedAuthors" class="selected-items"></div>
                 </div>
             </div>
             <div class="profile-section">
@@ -61,22 +61,18 @@
         <!-- Popup Window for Genres -->
         <div id="genresPopup" class="popup">
             <div class="popup-content">
-                <span class="close" id="closeGenresPopup">&times;</span>
+                <span class="close close-popup" id="closeGenresPopup">&times;</span>
                 <h3>בחר/י את הז'אנרים המועדפים עלייך</h3>
-                <ul id="genresOptions" class="options-list">
-                    <!-- Options will be dynamically inserted here -->
-                </ul>
+                <ul id="genresOptions" class="popup-options"></ul>
             </div>
         </div>
 
         <!-- Popup Window for Authors -->
         <div id="authorsPopup" class="popup">
             <div class="popup-content">
-                <span class="close" id="closeAuthorsPopup">&times;</span>
+                <span class="close close-popup" id="closeAuthorsPopup">&times;</span>
                 <h3>בחר/י את הסופרים/ות המועדפים עלייך</h3>
-                <ul id="authorsOptions" class="options-list">
-                    <!-- Options will be dynamically inserted here -->
-                </ul>
+                <ul id="authorsOptions" class="popup-options"></ul>
             </div>
         </div>
     </main>

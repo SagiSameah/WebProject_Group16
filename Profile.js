@@ -1,105 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    const maxSelections = 5;
-    let selectedGenres = [];
-    let selectedAuthors = [];
-
-    // Update genres and authors popups
-    const updateGenresButton = document.getElementById('updateGenres');
-    const updateAuthorsButton = document.getElementById('updateAuthors');
     const genresPopup = document.getElementById('genresPopup');
     const authorsPopup = document.getElementById('authorsPopup');
-    const closeGenresPopup = document.getElementById('closeGenresPopup');
-    const closeAuthorsPopup = document.getElementById('closeAuthorsPopup');
-    const genresOptionsList = document.getElementById('genresOptions');
-    const authorsOptionsList = document.getElementById('authorsOptions');
+    const genresOptions = document.getElementById('genresOptions');
+    const authorsOptions = document.getElementById('authorsOptions');
+    const selectedGenresContainer = document.getElementById('selectedGenres');
+    const selectedAuthorsContainer = document.getElementById('selectedAuthors');
 
-    updateGenresButton.addEventListener('click', () => {
-        openPopup(genresPopup);
-        populateOptions(genresOptionsList, genres, selectedGenres);
-    });
+    const genres = ["דרמה", "קומדיה", "מתח", "רומן", "מדע בדיוני", "פנטזיה", "היסטוריה", "ביוגרפיה"];
+    const authors = ["שייקספיר", "המינגוויי", "אגתה כריסטי", "צ'ארלס דיקנס", "ג'יין אוסטן", "ג'.ק. רולינג", "לב טולסטוי", "מארק טוויין"];
 
-    updateAuthorsButton.addEventListener('click', () => {
-        openPopup(authorsPopup);
-        populateOptions(authorsOptionsList, authors, selectedAuthors);
-    });
+    let selectedGenres = new Set();
+    let selectedAuthors = new Set();
 
-    closeGenresPopup.addEventListener('click', () => {
-        closePopup(genresPopup);
-    });
+    function populateOptions(container, items, selectedItems) {
+        container.innerHTML = ''; // Clear previous options
+        const sortedItems = Array.from(items).sort((a, b) => {
+            if (selectedItems.has(a) && !selectedItems.has(b)) return -1;
+            if (!selectedItems.has(a) && selectedItems.has(b)) return 1;
+            return a.localeCompare(b);
+        });
 
-    closeAuthorsPopup.addEventListener('click', () => {
-        closePopup(authorsPopup);
-    });
-
-    // Close the popup if the user clicks outside of it
-    window.addEventListener('click', (event) => {
-        if (event.target === genresPopup) {
-            closePopup(genresPopup);
-        }
-        if (event.target === authorsPopup) {
-            closePopup(authorsPopup);
-        }
-    });
-
-    // Function to open a popup
-    function openPopup(popupElement) {
-        popupElement.style.display = 'block';
-    }
-
-    // Function to close a popup
-    function closePopup(popupElement) {
-        popupElement.style.display = 'none';
-    }
-
-    // Populate the options in the popup
-    function populateOptions(listElement, options, selectedItems) {
-        listElement.innerHTML = '';
-        options.forEach(option => {
+        sortedItems.forEach(item => {
             const li = document.createElement('li');
-            li.textContent = option;
-            li.classList.add('popup-option');
-            if (selectedItems.includes(option)) {
-                li.classList.add('selected');
-            }
+            li.textContent = item;
+            li.classList.add(selectedItems.has(item) ? 'selected' : 'unselected');
             li.addEventListener('click', () => {
-                toggleOption(li, selectedItems);
+                if (selectedItems.has(item)) {
+                    selectedItems.delete(item);
+                } else {
+                    if (selectedItems.size < 5) {
+                        selectedItems.add(item);
+                    } else {
+                        alert('ניתן לבחור עד 5 אפשרויות');
+                        return;
+                    }
+                }
+                populateOptions(container, items, selectedItems);
+                updateSelectedItems(selectedGenresContainer, selectedGenres);
+                updateSelectedItems(selectedAuthorsContainer, selectedAuthors);
             });
-            listElement.appendChild(li);
+            container.appendChild(li);
         });
     }
 
-    // Function to toggle an option (select/deselect)
-    function toggleOption(optionElement, selectedItems) {
-        if (optionElement.classList.contains('selected')) {
-            deselectOption(optionElement, selectedItems);
-        } else {
-            selectOption(optionElement, selectedItems);
-        }
+    function updateSelectedItems(container, selectedItems) {
+        container.innerHTML = '';
+        Array.from(selectedItems).sort().forEach(item => {
+            const div = document.createElement('div');
+            div.textContent = item;
+            container.appendChild(div);
+        });
     }
 
-    // Function to select an option
-    function selectOption(optionElement, selectedItems) {
-        if (selectedItems.length >= maxSelections) {
-            alert('ניתן לבחור עד 5 אפשרויות');
-            return;
+    document.getElementById('updateGenres').addEventListener('click', () => {
+        populateOptions(genresOptions, genres, selectedGenres);
+        genresPopup.style.display = 'block';
+    });
+
+    document.getElementById('updateAuthors').addEventListener('click', () => {
+        populateOptions(authorsOptions, authors, selectedAuthors);
+        authorsPopup.style.display = 'block';
+    });
+
+    document.getElementById('closeGenresPopup').addEventListener('click', () => {
+        genresPopup.style.display = 'none';
+    });
+
+    document.getElementById('closeAuthorsPopup').addEventListener('click', () => {
+        authorsPopup.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === genresPopup) {
+            genresPopup.style.display = 'none';
+        } else if (event.target === authorsPopup) {
+            authorsPopup.style.display = 'none';
         }
-        optionElement.classList.add('selected');
-        selectedItems.push(optionElement.textContent);
-        selectedItems.sort(); // Sort selected items alphabetically
-    }
+    });
 
-    // Function to deselect an option
-    function deselectOption(optionElement, selectedItems) {
-        optionElement.classList.remove('selected');
-        const index = selectedItems.indexOf(optionElement.textContent);
-        if (index !== -1) {
-            selectedItems.splice(index, 1);
-        }
-    }
-
-    // Example options for genres and authors
-    const genres = ['Sci-Fi', 'Romance', 'Comedy', 'Biography', 'History', 'Detective', 'Drama', 'Series', 'Children', 'Comics', 'Autobiography', 'Politics'];
-    const authors = ['Author 1', 'Author 2', 'Author 3', 'Author 4', 'Author 5', 'Author 6', 'Author 7', 'Author 8', 'Author 9', 'Author 10', 'Author 11', 'Author 12'];
-
+    updateSelectedItems(selectedGenresContainer, selectedGenres);
+    updateSelectedItems(selectedAuthorsContainer, selectedAuthors);
 });
