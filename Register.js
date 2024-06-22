@@ -9,11 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("birthDate").addEventListener("click", showCalendar);
     document.querySelector(".calendar-icon").addEventListener("click", showCalendar);
 
-
     form.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
         if (!validateForm()) {
-            return; // Prevent form submission if validation fails
+            return;
         }
         localStorage.setItem("isLoggedIn", "true");
         window.location.href = 'HomePage.html';
@@ -107,7 +106,7 @@ function showCalendar() {
     document.body.appendChild(calendar);
     calendar.click();
 
-    calendar.onchange = function() {
+    calendar.onchange = function () {
         const date = new Date(calendar.value);
         const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
         birthDateInput.value = formattedDate;
