@@ -52,8 +52,26 @@
     border-radius: 5px;
     font-size: 1rem;
     background-color: #f5f5f5;
-    cursor: not-allowed;
 }
+
+.profile-info select {
+    cursor: default;
+    width: 10%;
+    padding: 8px;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.profile-info label,
+.profile-info input {
+    display: block;
+    margin-top: 5px;
+}
+
 .selected-items {
     display: flex;
     flex-wrap: wrap;
@@ -66,7 +84,6 @@
     border-radius: 5px;
 }
 
-/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -115,22 +132,20 @@
     color: black;
 }
 
-/* Default style for popups */
 .popup {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
-    z-index: 1000; /* Ensure popup is above other content */
-    max-width: 80%; /* Adjust as needed */
-    overflow: auto; /* Enable scrolling if content exceeds size */
+    z-index: 1000;
+    max-width: 80%;
+    overflow: auto;
 }
 
-/* Additional styling specific to your popups */
 #genresPopup, #authorsPopup {
     position: fixed;
     top: 50%;
@@ -155,23 +170,39 @@
     font-size: 14px;
 }
 
-/* popup options */
+
 .popup-options li {
-    display: inline-block; /* Display options inline */
-    margin: 5px; /* Adjust margin between options */
+    display: inline-block;
+    margin: 5px;
     padding: 8px 12px;
-    border-radius: 20px; /* Oval shape */
+    border-radius: 20px;
     cursor: pointer;
     border: 1px solid #ccc;
-    background-color: #f0f0f0; /* Default background color */
+    background-color: #f0f0f0;
     transition: background-color 0.3s;
 }
 
 .popup-options li.selected {
-    background-color: #79CDF1; /* Color for selected items */
+    background-color: #79CDF1;
     color: white;
 }
 
 .popup-options li:hover {
-    background-color: #e0e0e0; /* Hover effect */
+    background-color: #e0e0e0;
 }
+
+.update-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #79CDF1;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+

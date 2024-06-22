@@ -33,7 +33,6 @@
     border-radius: 5px;
     width: 600px;
     margin: 2rem 0;
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
 }
 .register-box label {
         display: block;
@@ -114,8 +113,8 @@ font-family: 'Inknut Antiqua', serif;
 
 .calendar {
     position: absolute;
-    top: 100%;
-    right: 55%;
+    top: 55.15%;
+    right: 56%;
 }
 
 #birthDate {
