@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastNameInput = document.getElementById("lastName");
     const passwordInput = document.getElementById("password");
     const confirmPasswordInput = document.getElementById("confirmPassword");
-    const birthDateInput = document.getElementById("birthDate");
+    // const birthDateInput = document.getElementById("birthDate");
+    const birthDateField = document.getElementById('birthDate');
     const form = document.getElementById("registerForm");
     document.getElementById("birthDate").addEventListener("click", showCalendar);
     document.querySelector(".calendar-icon").addEventListener("click", showCalendar);
@@ -23,6 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return emailPattern.test(emailInput.value);
     }
 
+    function validateBirthDate() {
+        const birthDateInput = birthDateField.value;
+        const [day, month, year] = birthDateInput.split('/');
+        const birthDate = new Date(`${year}-${month}-${day}`);
+        const startDate = new Date('1900-01-01');
+        const endDate = new Date('2020-12-31');
+
+        return birthDate >= startDate && birthDate <= endDate;
+    }
+
     function validatePassword() {
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         return passwordPattern.test(passwordInput.value);
@@ -32,10 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return confirmPasswordInput.value === passwordInput.value && confirmPasswordInput.value !== "";
     }
 
-    function validateBirthDate() {
-        const birthDatePattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-        return birthDatePattern.test(birthDateInput.value);
-    }
+    // function validateBirthDate() {
+    //     const birthDatePattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    //     return birthDatePattern.test(birthDateInput.value);
+    // }
 
     function validateForm() {
         let errorMessage = "";
@@ -49,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
             errorMessage += "\nPasswords do not match\n";
         }
         if (!validateBirthDate()) {
-            errorMessage += "\nPlease enter a valid birth date\n";
+            alert('Not a valid birthdate! Unless you\'re under 4 years old or over 120... 😉');
+            return;
         }
         if (!firstNameInput.value.trim() || !lastNameInput.value.trim()) {
             errorMessage += "Please fill in all required fields.\n";
