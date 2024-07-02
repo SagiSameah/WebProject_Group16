@@ -4,11 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastNameInput = document.getElementById("lastName");
     const passwordInput = document.getElementById("password");
     const confirmPasswordInput = document.getElementById("confirmPassword");
-    // const birthDateInput = document.getElementById("birthDate");
     const birthDateField = document.getElementById('birthDate');
     const form = document.getElementById("registerForm");
     document.getElementById("birthDate").addEventListener("click", showCalendar);
     document.querySelector(".calendar-icon").addEventListener("click", showCalendar);
+
+    firstNameInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^a-zA-Z]/g, '');
+    });
+
+    lastNameInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^a-zA-Z]/g, '');
+    });
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -42,11 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function validateConfirmPassword() {
         return confirmPasswordInput.value === passwordInput.value && confirmPasswordInput.value !== "";
     }
-
-    // function validateBirthDate() {
-    //     const birthDatePattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-    //     return birthDatePattern.test(birthDateInput.value);
-    // }
 
     function validateForm() {
         let errorMessage = "";
@@ -125,6 +127,5 @@ function showCalendar() {
         document.body.removeChild(calendar);
     };
 
-    // Add a class to identify the calendar
     calendar.classList.add("calendar");
 }

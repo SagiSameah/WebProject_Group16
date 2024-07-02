@@ -7,6 +7,16 @@
     text-align: center;
 }
 
+
+.main-title {
+    margin-bottom: 5px; /* Adjust as needed */
+}
+
+.subtitle {
+    margin-top: 1px; /* Adjust as needed */
+}
+
+
 .form-group {
         display: flex;
         justify-content: space-between;
@@ -113,8 +123,8 @@ font-family: 'Inknut Antiqua', serif;
 
 .calendar {
     position: absolute;
-    top: 55.15%;
-    right: 56%;
+    top: 52.5%;
+    right: 57.7%;
 }
 
 #birthDate {
