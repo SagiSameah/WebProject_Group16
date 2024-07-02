@@ -5,20 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextButton = document.querySelector(".next");
     let currentIndex = 0;
 
-    // Number of slides to show at a time
     const slidesToShow = 3;
 
-    // Event listener for previous button
     prevButton.addEventListener("click", () => {
         moveSlide(-1);
     });
 
-    // Event listener for next button
     nextButton.addEventListener("click", () => {
         moveSlide(1);
     });
 
-    // Function to move slides
     function moveSlide(direction) {
         const totalSlides = slides.length;
         currentIndex = (currentIndex + direction + totalSlides) % totalSlides;

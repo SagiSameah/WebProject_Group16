@@ -1,3 +1,117 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Readiculous - Home Page</title>-->
+<!--    <link rel="stylesheet" href="HomePage.css">-->
+<!--    <link rel="stylesheet" href="General.css">-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"-->
+<!--          rel="stylesheet">-->
+<!--    <script src="Authentication.js" defer></script>-->
+<!--    <script src="funFacts.js"></script>-->
+<!--    <script src="Filter.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--    <nav>-->
+<!--        <a href="profile.html">פרופיל אישי</a>-->
+<!--        <a href="Book1.html">ספרים חדשים</a>-->
+<!--        <a href="Login.html">התנתקות</a>-->
+<!--    </nav>-->
+<!--</header>-->
+<!--<main>-->
+<!--    <h1 class="main-title">Readiculous</h1>-->
+<!--    <div class="search-container">-->
+<!--        <input type="text" id="searchBox" placeholder="חפש ספרים, סופרים..."/>-->
+<!--        <div class="recommended-books">-->
+<!--            <h2>הספרים המומלצים שלי</h2>-->
+<!--            <div class="book-carousel">-->
+<!--                <button class="carousel-nav next">&#10094;</button>-->
+<!--                <div class="carousel-track">-->
+<!--                    <div class="book-slide">-->
+<!--                        <a href="Book1.html?id=2"><img src="Photo2.jpg" alt="סיפור אגדה"></a>-->
+<!--                    </div>-->
+<!--                    <div class="book-slide">-->
+<!--                        <a href="Book2.html?id=1"><img src="Photo4.jpg" alt="חתול תעלול"></a>-->
+<!--                    </div>-->
+<!--                    <div class="book-slide">-->
+<!--                        <a href="Book3.html?id=3"><img src="Photo3.jpg" alt="על הדברים החשובים באמת"></a>-->
+<!--                    </div>-->
+<!--                    <div class="book-slide">-->
+<!--                        <a href="Book4.html?id=4"><img src="Photo5.jpg" alt="בן המלך והעני"></a>-->
+<!--                    </div>-->
+<!--                    <div class="book-slide">-->
+<!--                        <a href="Book5.html?id=5"><img src="Photo6.jfif" alt="הארי פוטר ואבן החכמים"></a>-->
+<!--                    </div>-->
+<!--                    <div class="book-slide">-->
+<!--                        <a href="Book6.html?id=6"><img src="Photo1.jpg" alt="אגדות דשא"></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button class="carousel-nav prev">&#10095;</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="quote-section">-->
+<!--        <p class="quote">“Books are the mirror of the soul”<br>-->
+<!--            Virginia Wolf -</p>-->
+<!--    </div>-->
+<!--    <div class="fun-fact-section">-->
+<!--        <h2>Fun Fact</h2>-->
+<!--        <p id="funFactText"></p>-->
+<!--    </div>-->
+<!--    <aside class="filters-section">-->
+<!--        <h2>מצא ספרים על ידי סינון:</h2>-->
+<!--        <form id="filtersForm">-->
+<!--            <div class="filter-group">-->
+<!--                <label for="authorsFilter">מחבר:</label>-->
+<!--                <select id="authorsFilter" multiple>-->
+<!--                    &lt;!&ndash; Options will be populated dynamically with JavaScript &ndash;&gt;-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="filter-group">-->
+<!--                <label for="genresFilter">ז'אנר:</label>-->
+<!--                <select id="genresFilter" multiple>-->
+<!--                    &lt;!&ndash; Options will be populated dynamically with JavaScript &ndash;&gt;-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="filter-group">-->
+<!--                <label for="pagesValue">מספר עמודים:</label>-->
+<!--                <input type="number" id="minPages" placeholder="Min" min="0">-->
+<!--                <input type="number" id="maxPages" placeholder="Max" min="0">-->
+<!--                <input type="range" id="pagesRange" min="0" max="1000" value="0">-->
+<!--                <output id="pagesValue">0</output>-->
+<!--            </div>-->
+<!--            <div class="filter-group">-->
+<!--                <label for="ratingFilter">דירוג:</label>-->
+<!--                <select id="ratingFilter">-->
+<!--                    <option value="1">★</option>-->
+<!--                    <option value="2">★★</option>-->
+<!--                    <option value="3">★★★</option>-->
+<!--                    <option value="4">★★★★</option>-->
+<!--                    <option value="5">★★★★★</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="filter-group">-->
+<!--                <label for="yearMin">שנת הוצאה לאור:</label>-->
+<!--                &lt;!&ndash;<input type="range" id="yearFilter" min="1900" max="2024" step="1" value="2024">&ndash;&gt;-->
+<!--                &lt;!&ndash;<output for="yearFilter">2024</output>&ndash;&gt;-->
+<!--                <input type="number" id="yearMin" min="1900" max="2024" value="1900">-->
+<!--                <label for="yearMax">עד:</label>-->
+<!--                <input type="number" id="yearMax" min="1900" max="2024" value="2024">-->
+<!--            </div>-->
+<!--            <button type="submit">סנן</button>-->
+<!--            <button type="reset">אפס סינון</button>-->
+<!--        </form>-->
+<!--    </aside>-->
+<!--</main>-->
+<!--<footer>-->
+<!--    <p>&copy; 2024 Readiculous</p>-->
+<!--</footer>-->
+<!--<script src="carousel.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,43 +123,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
           rel="stylesheet">
     <script src="Authentication.js" defer></script>
+    <script src="funFacts.js"></script>
+    <script src="Filter.js"></script>
 </head>
 <body>
 <header>
     <nav>
         <a href="profile.html">פרופיל אישי</a>
-        <a href="Book.html">ספרים חדשים</a>
+        <a href="Book1.html">ספרים חדשים</a>
         <a href="Login.html">התנתקות</a>
     </nav>
 </header>
 <main>
     <h1 class="main-title">Readiculous</h1>
     <div class="search-container">
-        <!--
         <input type="text" id="searchBox" placeholder="חפש ספרים, סופרים..."/>
-        -->
         <div class="recommended-books">
             <h2>הספרים המומלצים שלי</h2>
             <div class="book-carousel">
                 <button class="carousel-nav next">&#10094;</button>
                 <div class="carousel-track">
                     <div class="book-slide">
-                        <a href="book2.html?id=1"><img src="Photo4.jpg" alt="חתול תעלול"></a>
+                        <a href="Book1.html?id=2"><img src="Photo2.jpg" alt="סיפור אגדה"></a>
                     </div>
                     <div class="book-slide">
-                        <a href="book.html?id=2"><img src="Photo2.jpg" alt="Book 2"></a>
+                        <a href="Book2.html?id=1"><img src="Photo4.jpg" alt="חתול תעלול"></a>
                     </div>
                     <div class="book-slide">
-                        <a href="book3.html?id=3"><img src="Photo3.jpg" alt="Book 3"></a>
+                        <a href="Book3.html?id=3"><img src="Photo3.jpg" alt="על הדברים החשובים באמת"></a>
                     </div>
                     <div class="book-slide">
-                        <a href="book.html?id=4"><img src="Photo5.jpg" alt="Book 4"></a>
+                        <a href="Book4.html?id=4"><img src="Photo5.jpg" alt="בן המלך והעני"></a>
                     </div>
                     <div class="book-slide">
-                        <a href="book.html?id=5"><img src="Photo6.jfif" alt="Book 5"></a>
+                        <a href="Book5.html?id=5"><img src="Photo6.jfif" alt="הארי פוטר ואבן החכמים"></a>
                     </div>
                     <div class="book-slide">
-                        <a href="book.html?id=6"><img src="Photo1.jpg" alt="אגדות דשא"></a>
+                        <a href="Book6.html?id=6"><img src="Photo1.jpg" alt="אגדות דשא"></a>
                     </div>
                 </div>
                 <button class="carousel-nav prev">&#10095;</button>
@@ -56,6 +170,56 @@
         <p class="quote">“Books are the mirror of the soul”<br>
             Virginia Wolf -</p>
     </div>
+    <div class="fun-fact-section">
+        <h2>Fun Fact</h2>
+        <p id="funFactText"></p>
+    </div>
+    <aside class="filters-section">
+        <h2>מצא ספרים על ידי סינון:</h2>
+        <form id="filtersForm">
+            <div class="filter-group">
+                <label for="authorsFilter">מחבר:</label>
+                <div id="authorsFilter" class="filter-checkbox-list">
+                    <!-- Checkboxes will be populated dynamically with JavaScript -->
+                </div>
+            </div>
+            <div class="filter-group">
+                <label for="genresFilter">ז'אנר:</label>
+                <div id="genresFilter" class="filter-checkbox-list">
+                    <!-- Checkboxes will be populated dynamically with JavaScript -->
+                </div>
+            </div>
+            <div class="filter-group">
+                <label for="MinPages">מספר עמודים:</label>
+            </div>
+            <div class="filter-group pages-group">
+                <input type="number" id="minPages" placeholder="Min" min="0">
+                <label for="maxPages">עד:</label>
+                <input type="number" id="maxPages" placeholder="Max" min="0">
+            </div>
+            <div class="filter-group">
+                <label for="ratingFilter">דירוג:</label>
+                <select id="ratingFilter">
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="yearMin">שנת הוצאה לאור:</label>
+            </div>
+            <div class="filter-group year-group">
+                <input type="number" id="yearMin" min="1900" max="2024" value="1900">
+                <label for="yearMax">עד:</label>
+                <input type="number" id="yearMax" min="1900" max="2024" value="2024">
+            </div>
+
+            <button type="submit">סנן</button>
+            <button type="reset">אפס סינון</button>
+        </form>
+    </aside>
 </main>
 <footer>
     <p>&copy; 2024 Readiculous</p>

@@ -10,31 +10,30 @@
     margin-top: 1rem;
 }
 
-/*.search-container {*/
-/*    width: 100%;*/
-/*    text-align: center;*/
-/*    margin-top: 20px;*/
-/*}*/
+.search-container {
+    width: 100%;
+    text-align: center;
+}
 
-/*#searchBox {*/
-/*    width: 500px;*/
-/*    padding: 10px;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 5px;*/
-/*    font-size: 16px;*/
-/*    color: #333;*/
-/*    background-color: #f0f0f0;*/
-/*    margin: 0 auto;*/
-/*}*/
+#searchBox {
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f0f0f0;
+    margin: 0 auto;
+}
 
-/*#searchBox::placeholder {*/
-/*    color: #ccc;*/
-/*}*/
+#searchBox::placeholder {
+    color: #ccc;
+}
 
 .recommended-books {
-    width: 80%;
+    width: 50%;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 5px 5px 50px 5px;
     background-color: #f6f6f6;
     border-radius: 5px;
@@ -63,16 +62,18 @@
 
 .carousel-track {
     display: flex;
+    gap: 10px; /* Adjust the gap between slides */
     transition: transform 0.4s ease-in-out;
-    width: calc(100% / 3 * 6); /* Adjust based on the number of total slides */
+    width: calc((100% + 100px) * 6); /* Adjust based on the number of total slides and gap */
 }
 
 .book-slide {
     min-width: 33.33%;
-    flex: 0 0 33.33%;
+    flex: 0 0 calc(33.33% - 10px);
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: -88px;
 }
 
 .book-slide img {
@@ -81,9 +82,10 @@
     border-radius: 5px;
 }
 
+
 .carousel-nav {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -106,3 +108,137 @@
 .next {
     right: 4px;
 }
+
+.fun-fact-section {
+    position: fixed;
+    top: 35%;
+    left: 0;
+    width: 200px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.fun-fact-section h2 {
+    font-size: 1.5rem;
+    color: #79CDF1;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.fun-fact-section p {
+    font-size: 1.3rem;
+    transition: opacity 1s ease-out;
+    opacity: 1;
+}
+
+.filters-section {
+    position: fixed;
+    top: 8.5%;
+    width: 220px;
+    margin-left: auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Inknut Antiqua', serif;
+    z-index: 1000;
+    /*max-height: calc(100vh - 100px);*/
+    /*overflow-y: auto;*/
+
+}
+
+.filters-section h2 {
+    color: #79CDF1;
+    margin-top: 2px;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.filter-group {
+    margin-bottom: 8px;
+}
+
+.filter-checkbox-list {
+    background-color: white;
+    max-height: 110px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 1px;
+}
+
+.filter-group.year-group {
+    display: flex;
+    align-items: center;
+}
+
+.filter-group.year-group input[type="number"] {
+    margin-left: 5px;
+    width: 84px;
+}
+
+.filter-group.year-group label[for="yearMax"] {
+    margin-left: 10px;
+}
+
+.filter-group select, .filter-group input[type="range"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.filter-group output {
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.filter-group.pages-group {
+    display: flex;
+    align-items: center;
+    margin-top: 5px; /* Add some space above the group */
+}
+
+.filter-group.pages-group input[type="number"] {
+    margin-left: 5px;
+    width: 84px; /* Adjust width as needed */
+}
+
+.filter-group.pages-group label {
+    margin-left: 10px; /* Adjust space between min input and "עד" label */
+}
+
+
+@media screen and (max-width: 1068px) {
+    .fun-fact-section, .filters-section {
+        position: static; /* Reset to static positioning */
+        width: auto;
+        margin: 10px; /* Adjust margin as needed */
+    }
+}
+
