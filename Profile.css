@@ -1,14 +1,15 @@
 .profile-container {
-    width: 80%;
+    width: 60%;
     margin: 2rem auto;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+
 }
 .personal-info-section {
-    width: 75%;
-    display: flex;
+    width: 70%;
+    display: inline-table;
     flex-direction: row;
     align-items: flex-start;
     background-color: #ffffff;
@@ -17,21 +18,32 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .profile-picture {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    margin-right: 5rem;
 }
 .profile-info-vertical {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /*flex-grow: 1;
-    display: flex;
-    flex-direction: column;*/
+    mso-table-left: left;
+    flex-grow: 1;
 }
 .profile-info-vertical p {
-    margin: 0.3rem 0;
+    margin: 0.5rem 0;
+}
+#editPersonalInfo {
+    background-color: #9533D2;
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1rem;
+    align-self: flex-end;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    border-radius: 7px;
+}
+#editPersonalInfo:hover {
+    background-color: #6c2499;
 }
 .update-button {
     background-color: #9533D2;
@@ -43,6 +55,7 @@
     font-size: 1rem;
     transition: background-color 0.3s ease;
     width: 100%;
+    border-radius: 10px;
 }
 .update-button:hover {
     background-color: #6c2499;
@@ -79,7 +92,7 @@
     padding: 20px;
     z-index: 1000;
     max-width: 80%;
-    overflow-y: auto;
+    overflow: auto;
 }
 .popup-content {
     background-color: #fff;
@@ -117,21 +130,10 @@
     font-size: 0.9rem;
     margin-top: 0.5rem;
 }
-.profile-info p {
-   /* margin: 5px 0;*/
-   margin: 0.2rem 0;
-}
-.update-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #9533D2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-.update-button:hover {
-    background-color: #6c2499;
+.profile-info label,
+.profile-info input,
+.profile-info select {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
 }
