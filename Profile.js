@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const genderSelect = document.getElementById('gender');
     const passwordInput = document.getElementById('password');
 
-    const genres = ["פנטזיה", "מתח", "רומנטיקה", "מדע בדיוני", "ביוגרפיה"];
-    const authors = ["ש\"י עגנון", "דוד גרוסמן", "צרויה שלו", "עמוס עוז","שגיא שמח","דניאל נוס" ,"אלונה קמחי"];
+    const genres = ["פרוזה","פילוסופיה","פנטזיה", "מתח", "רומנטיקה", "מדע בדיוני", "ביוגרפיה"];
+    const authors = ["ש\"י עגנון", "דוד גרוסמן", "צרויה שלו", "עמוס עוז", "אלונה קמחי","דניאל נוס","שגיא שמח"];
     const selectedGenres = new Set();
     const selectedAuthors = new Set();
 
