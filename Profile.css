@@ -2,136 +2,67 @@
     width: 80%;
     margin: 2rem auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.profile-section {
-    width: 100%;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: space-between;
+}
+.personal-info-section {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     background-color: #ffffff;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.profile-heading {
-    color: #79CDF1;
-    font-size: 1.5rem;
-    font-family: 'Istok Web', sans-serif;
-    flex: 1;
-    text-align: right;
-    cursor: pointer;
-    background: none;
-    border: none;
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: 1rem;
+}
+.profile-info-vertical {
+    flex-grow: 1;
+}
+.profile-info-vertical p {
+    margin: 0.5rem 0;
 }
 .update-button {
     background-color: #9533D2;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     cursor: pointer;
-    margin-left: 1rem;
+    margin-top: 1rem;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 .update-button:hover {
     background-color: #6c2499;
 }
-.profile-info {
-    flex: 2;
-    text-align: right;
-}
-.profile-info textarea,
-.profile-info input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: #f5f5f5;
-}
-
-.profile-info select {
-    cursor: default;
-    width: 10%;
-    padding: 8px;
-    display: block;
-    margin-top: 5px;
-    margin-bottom: 7px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.profile-info label,
-.profile-info input {
-    display: block;
-    margin-top: 5px;
-}
-
-.selected-items {
+.button-section {
+    width: 20%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-end;
 }
-.selected-items div {
-    background-color: #79CDF1;
-    color: white;
-    padding: 0.5rem;
-    margin: 0.25rem;
-    border-radius: 5px;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
+#selectedGenresContainer,
+#selectedAuthorsContainer {
+    margin-top: 1rem;
+    text-align: left;
     width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    word-wrap: break-word;
 }
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-}
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-.modal-items div {
+.selected-item {
     display: inline-block;
-    margin: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.modal-items .selected {
+    margin: 0.2rem 0.2rem 0.2rem 0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
     background-color: #79CDF1;
     color: white;
 }
-.modal-items .unselected {
-    background-color: #ccc;
-    color: black;
-}
-
 .popup {
     display: none;
     position: fixed;
@@ -145,32 +76,11 @@
     max-width: 80%;
     overflow: auto;
 }
-
-#genresPopup, #authorsPopup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.popup-content {
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
-    z-index: 1000;
-    max-width: 80%;
-    overflow: auto;
     border-radius: 10px;
-    font-family: 'Arial', sans-serif;
-    color: #333;
 }
-#genresPopup input[type="text"], #authorsPopup input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-
 .popup-options li {
     display: inline-block;
     margin: 5px;
@@ -181,28 +91,31 @@
     background-color: #f0f0f0;
     transition: background-color 0.3s;
 }
-
 .popup-options li.selected {
     background-color: #79CDF1;
     color: white;
 }
-
 .popup-options li:hover {
     background-color: #e0e0e0;
 }
-
-.update-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #79CDF1;
-    color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    text-align: center;
+.close-popup {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
 }
-
-
+.close-popup:hover {
+    color: #999;
+}
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+.profile-info label,
+.profile-info input,
+.profile-info select {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}

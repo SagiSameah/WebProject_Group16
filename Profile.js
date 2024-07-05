@@ -1,164 +1,119 @@
 document.addEventListener('DOMContentLoaded', () => {
     const genresPopup = document.getElementById('genresPopup');
     const authorsPopup = document.getElementById('authorsPopup');
+    const personalInfoPopup = document.getElementById('personalInfoPopup');
     const genresOptions = document.getElementById('genresOptions');
     const authorsOptions = document.getElementById('authorsOptions');
-    const selectedGenresContainer = document.getElementById('selectedGenres');
-    const selectedAuthorsContainer = document.getElementById('selectedAuthors');
+    const selectedGenresContainer = document.getElementById('selectedGenresContainer');
+    const selectedAuthorsContainer = document.getElementById('selectedAuthorsContainer');
+    const genresErrorMsg = document.getElementById('genresErrorMsg');
+    const authorsErrorMsg = document.getElementById('authorsErrorMsg');
+    const displayFirstName = document.getElementById('displayFirstName');
+    const displayLastName = document.getElementById('displayLastName');
+    const displayEmail = document.getElementById('displayEmail');
+    const displayBirthDate = document.getElementById('displayBirthDate');
+    const displayGender = document.getElementById('displayGender');
+    const displayPassword = document.getElementById('displayPassword');
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+    const emailInput = document.getElementById('email');
+    const birthDateInput = document.getElementById('birthDate');
     const genderSelect = document.getElementById('gender');
-    const passwordField = document.getElementById('password');
-    const emailField = document.getElementById('email');
-    const birthDateField = document.getElementById('birthDate');
+    const passwordInput = document.getElementById('password');
 
-    const genres = ["דרמה", "קומדיה", "מתח", "רומן", "מדע בדיוני", "פנטזיה", "היסטוריה", "ביוגרפיה"];
-    const authors = ["שייקספיר", "ארנסט המינגוויי", "אגתה כריסטי", "צ'ארלס דיקנס", "ג'יין אוסטן", "ג'יי .קיי. רולינג", "לב טולסטוי", "מארק טוויין"];
+    const genres = ["פנטזיה", "מתח", "רומנטיקה", "מדע בדיוני", "ביוגרפיה"];
+    const authors = ["ש\"י עגנון", "דוד גרוסמן", "צרויה שלו", "עמוס עוז","שגיא שמח","דניאל נוס" ,"אלונה קמחי"];
+    const selectedGenres = new Set();
+    const selectedAuthors = new Set();
 
-    let selectedGenres = new Set();
-    let selectedAuthors = new Set();
-    let passwordTouched = false;
-    let emailTouched = false;
-
-    passwordField.addEventListener('input', () => {
-        passwordTouched = true;
-    });
-
-    emailField.addEventListener('input', () => {
-        emailTouched = true;
-    });
-
-    function populateOptions(container, items, selectedItems) {
+    function populateOptions(container, items, selectedItems, errorMsg) {
         container.innerHTML = '';
-        const sortedItems = Array.from(items).sort((a, b) => {
+        errorMsg.textContent = '';
+        const sortedItems = items.sort((a, b) => {
             if (selectedItems.has(a) && !selectedItems.has(b)) return -1;
             if (!selectedItems.has(a) && selectedItems.has(b)) return 1;
             return a.localeCompare(b);
         });
 
-        sortedItems.forEach(item => {
+        for (const item of sortedItems) {
             const li = document.createElement('li');
             li.textContent = item;
-            li.classList.add(selectedItems.has(item) ? 'selected' : 'unselected');
+            if (selectedItems.has(item)) {
+                li.classList.add('selected');
+            }
             li.addEventListener('click', () => {
                 if (selectedItems.has(item)) {
                     selectedItems.delete(item);
+                    li.classList.remove('selected');
+                } else if (selectedItems.size < 5) {
+                    selectedItems.add(item);
+                    li.classList.add('selected');
                 } else {
-                    if (selectedItems.size < 5) {
-                        selectedItems.add(item);
-                    } else {
-                        alert('ניתן לבחור עד 5 אפשרויות');
-                        return;
-                    }
+                    errorMsg.textContent = "ניתן לבחור עד 5 אפשרויות";
                 }
-                populateOptions(container, items, selectedItems);
-                updateSelectedItems(selectedGenresContainer, selectedGenres);
-                updateSelectedItems(selectedAuthorsContainer, selectedAuthors);
+                populateOptions(container, items, selectedItems, errorMsg);
             });
             container.appendChild(li);
-        });
+        }
     }
 
-    function updateSelectedItems(container, selectedItems) {
-        container.innerHTML = '';
-        Array.from(selectedItems).sort().forEach(item => {
-            const div = document.createElement('div');
-            div.textContent = item;
-            container.appendChild(div);
-        });
-    }
+    document.getElementById('editPersonalInfo').addEventListener('click', () => {
+        personalInfoPopup.style.display = 'block';
+        firstNameInput.value = displayFirstName.textContent;
+        lastNameInput.value = displayLastName.textContent;
+        emailInput.value = displayEmail.textContent;
+        birthDateInput.value = displayBirthDate.textContent;
+        genderSelect.value = displayGender.textContent === 'זכר' ? 'male' : 'female';
+        passwordInput.value = displayPassword.textContent;
+    });
+
+    document.getElementById('savePersonalInfo').addEventListener('click', () => {
+        if (firstNameInput.value) displayFirstName.textContent = firstNameInput.value;
+        if (lastNameInput.value) displayLastName.textContent = lastNameInput.value;
+        if (emailInput.value) displayEmail.textContent = emailInput.value;
+        if (birthDateInput.value) displayBirthDate.textContent = birthDateInput.value;
+        if (genderSelect.value) displayGender.textContent = genderSelect.value === 'male' ? 'זכר' : 'נקבה';
+        if (passwordInput.value) displayPassword.textContent = passwordInput.value;
+        personalInfoPopup.style.display = 'none';
+    });
 
     document.getElementById('updateGenres').addEventListener('click', () => {
-        populateOptions(genresOptions, genres, selectedGenres);
         genresPopup.style.display = 'block';
+        populateOptions(genresOptions, genres, selectedGenres, genresErrorMsg);
     });
 
     document.getElementById('updateAuthors').addEventListener('click', () => {
-        populateOptions(authorsOptions, authors, selectedAuthors);
         authorsPopup.style.display = 'block';
+        populateOptions(authorsOptions, authors, selectedAuthors, authorsErrorMsg);
     });
 
     document.getElementById('closeGenresPopup').addEventListener('click', () => {
         genresPopup.style.display = 'none';
+        updateSelectedItemsDisplay(selectedGenresContainer, selectedGenres);
     });
 
     document.getElementById('closeAuthorsPopup').addEventListener('click', () => {
         authorsPopup.style.display = 'none';
+        updateSelectedItemsDisplay(selectedAuthorsContainer, selectedAuthors);
     });
 
-    window.addEventListener('click', (event) => {
+    document.getElementById('closePersonalInfoPopup').addEventListener('click', () => {
+        personalInfoPopup.style.display = 'none';
+    });
+
+    function updateSelectedItemsDisplay(container, selectedItems) {
+        container.innerHTML = Array.from(selectedItems).map(item => `<span class="selected-item">${item}</span>`).join(', ');
+    }
+
+    window.onclick = function (event) {
         if (event.target === genresPopup) {
-            genresPopup.style.display = 'none';
+            genresPopup.style.display = "none";
+            updateSelectedItemsDisplay(selectedGenresContainer, selectedGenres);
         } else if (event.target === authorsPopup) {
-            authorsPopup.style.display = 'none';
+            authorsPopup.style.display = "none";
+            updateSelectedItemsDisplay(selectedAuthorsContainer, selectedAuthors);
+        } else if (event.target === personalInfoPopup) {
+            personalInfoPopup.style.display = "none";
         }
-    });
-
-    updateSelectedItems(selectedGenresContainer, selectedGenres);
-    updateSelectedItems(selectedAuthorsContainer, selectedAuthors);
-
-    const editPersonalInfoButton = document.getElementById('editPersonalInfo');
-    const savePersonalInfoButton = document.getElementById('savePersonalInfo');
-    const personalInfoFields = document.querySelectorAll('.profile-info input, .profile-info select');
-
-    editPersonalInfoButton.addEventListener('click', () => {
-        personalInfoFields.forEach(field => {
-            field.removeAttribute('readonly');
-        });
-        genderSelect.disabled = false;
-        editPersonalInfoButton.style.display = 'none';
-        savePersonalInfoButton.style.display = 'block';
-    });
-
-    savePersonalInfoButton.addEventListener('click', () => {
-        if (passwordTouched && !validatePassword()) {
-            return;
-        }
-        if (!validateBirthDate()) {
-            alert('Not a valid birthdate! Unless you\'re under 4 years old or over 120... 😉');
-            return;
-        }
-
-        personalInfoFields.forEach(field => {
-            field.setAttribute('readonly', 'true');
-            field.value = '';
-        });
-        genderSelect.disabled = true;
-        editPersonalInfoButton.style.display = 'block';
-        savePersonalInfoButton.style.display = 'none';
-        showUpdatePopup();
-    });
-
-    function validatePassword() {
-        const password = passwordField.value;
-        const minLength = 8;
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumber = /\d/.test(password);
-
-        if (password.length < minLength || !hasUpperCase || !hasLowerCase || !hasNumber) {
-            alert('Password must be at least 8 characters long and contain an uppercase letter, lowercase letter, and one number\n');
-            return false;
-        }
-        return true;
     }
-
-    function validateBirthDate() {
-        const birthDateInput = birthDateField.value;
-        const [day, month, year] = birthDateInput.split('/');
-        const birthDate = new Date(`${year}-${month}-${day}`);
-        const startDate = new Date('1900-01-01');
-        const endDate = new Date('2020-12-31');
-
-        return birthDate >= startDate && birthDate <= endDate;
-    }
-
-    function showUpdatePopup() {
-        const popup = document.createElement('div');
-        popup.classList.add('update-popup');
-        popup.textContent = 'הפרטים האישיים עודכנו בהצלחה';
-        document.body.appendChild(popup);
-        setTimeout(() => {
-            document.body.removeChild(popup);
-        }, 3000);
-    }
-
 });
