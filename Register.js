@@ -10,12 +10,31 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".calendar-icon").addEventListener("click", showCalendar);
 
     firstNameInput.addEventListener('input', function () {
-        this.value = this.value.replace(/[^a-zA-Z]/g, '');
+        this.value = this.value.replace(/[^a-zA-Z\u0590-\u05FF]/g, '');
+        validateLanguage(this.value, 'firstNameError');
+
     });
 
     lastNameInput.addEventListener('input', function () {
-        this.value = this.value.replace(/[^a-zA-Z]/g, '');
+        this.value = this.value.replace(/[^a-zA-Z\u0590-\u05FF]/g, '');
+        validateLanguage(this.value, 'lastNameError');
+
     });
+
+    function validateLanguage(value, errorElementId) {
+        const hebrewPattern = /[\u0590-\u05FF]/;
+        const englishPattern = /[a-zA-Z]/;
+
+        const containsHebrew = hebrewPattern.test(value);
+        const containsEnglish = englishPattern.test(value);
+
+        const errorElement = document.getElementById(errorElementId);
+        if (containsHebrew && containsEnglish) {
+            errorElement.textContent = 'יש להזין שם פרטי ומשפחה בשפה אחת בלבד (עברית או אנגלית)';
+        } else {
+            errorElement.textContent = '';
+        }
+    }
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
