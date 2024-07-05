@@ -144,3 +144,10 @@ font-family: 'Inknut Antiqua', serif;
     color: #999;
     text-align: left;
 }
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
