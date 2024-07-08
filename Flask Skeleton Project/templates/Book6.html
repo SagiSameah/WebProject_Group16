@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readiculous - Book</title>
+    <link rel="stylesheet" href="../Book.css">
+    <link rel="stylesheet" href="../General.css">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="HomePage.html">דף הבית</a>
+            <a href="profile.html">פרופיל אישי</a>
+            <a href="Login.html">התנתקות</a>
+        </nav>
+    </header>
+    <main>
+        <h1 class="main-title">Readiculous</h1>
+        <div class="book-container">
+            <div class="book-details">
+                <h2 id="bookName">אגדות דשא</h2>
+                <p><span class="property-title">מחבר:</span> <span id="author">סטיבן קינג</span></p>
+                <p><span class="property-title">מוציא לאור:</span> <span id="publisher">מודן</span></p>
+                <p><span class="property-title">שנה:</span> <span id="year">2023</span></p>
+                <p><span class="property-title">ז'אנר:</span> <span id="genre">דרמה</span></p>
+                <p><span class="property-title">עמודים:</span> <span id="pages">621</span></p>
+                <p>
+                    <span class="property-title">דירוג:</span>
+                    <span id="rating">4.9</span>
+                    <span id="stars-container"></span>
+                    <span id="ratersCount">(13 מדרגים)</span>
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </p>
+                <div class="rate-button-container">
+                    <button id="rateButton">דרג את הספר</button>
+                </div>
+            </div>
+            <div class="book-image">
+                <img src="../Photo2.jpg" alt="Example Book">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Readiculous</p>
+    </footer>
+
+    <!-- Rating Modal -->
+    <div id="ratingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeRatingModal">&times;</span>
+            <h2>בחר דירוג:</h2>
+            <div id="userRatingStars" class="stars-container">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+        </div>
+    </div>
+    <script src="Flask%20Skeleton%20Project/static/static/js%20files/Book.js"></script>
+</body>
+</html>
