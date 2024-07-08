@@ -1,14 +1,15 @@
 .profile-container {
-    width: 80%;
+    width: 60%;
     margin: 2rem auto;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+
 }
 .personal-info-section {
-    width: 75%;
-    display: flex;
+    width: 70%;
+    display: inline-table;
     flex-direction: row;
     align-items: flex-start;
     background-color: #ffffff;
@@ -17,16 +18,32 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .profile-picture {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    margin-left: 1rem;
 }
 .profile-info-vertical {
+    mso-table-left: left;
     flex-grow: 1;
 }
 .profile-info-vertical p {
     margin: 0.5rem 0;
+}
+#editPersonalInfo {
+    background-color: #9533D2;
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1rem;
+    align-self: flex-end;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    border-radius: 7px;
+}
+#editPersonalInfo:hover {
+    background-color: #6c2499;
 }
 .update-button {
     background-color: #9533D2;
@@ -38,6 +55,7 @@
     font-size: 1rem;
     transition: background-color 0.3s ease;
     width: 100%;
+    border-radius: 10px;
 }
 .update-button:hover {
     background-color: #6c2499;
