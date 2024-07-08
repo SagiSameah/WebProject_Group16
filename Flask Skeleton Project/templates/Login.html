@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../General.css">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
           rel="stylesheet">
+    {% include('Footer.html') %} #EXAMPLE
     <script src="login.js"></script>
 </head>
 <body>
@@ -32,11 +33,11 @@
             <button type="submit" onclick="validateAndRedirect()">התחברות</button>
         </form>
         <div id="errorModal" class="modal">
-    <div class="modal-content">
-        <span id="closeModal" class="close">&times;</span>
-        <p id="modalMessage"></p>
-    </div>
-</div>
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
     </div>
     <p class="register-prompt">עוד לא רשום? <a href="Register.html" class="register-link">הירשם כאן</a></p>
     <div class="quote-section">
@@ -52,17 +53,17 @@
 <script src="scripts.js"></script>
 </body>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    const logoutLink = document.getElementById("logoutLink");
+    document.addEventListener("DOMContentLoaded", () => {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const logoutLink = document.getElementById("logoutLink");
 
-    if (isLoggedIn) {
-        logoutLink.style.display = "inline";
-        logoutLink.addEventListener("click", () => {
-            localStorage.removeItem("isLoggedIn");
-            window.location.href = "register.html";
-        });
-    }
-});
+        if (isLoggedIn) {
+            logoutLink.style.display = "inline";
+            logoutLink.addEventListener("click", () => {
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "register.html";
+            });
+        }
+    });
 </script>
 </html>
