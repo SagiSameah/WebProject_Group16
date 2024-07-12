@@ -13,10 +13,15 @@
     <script src="../Filter.js"></script>
 </head>
 <body>
+    {% include 'Header.html' %}
+    {% include 'Footer.html' %}
+{#    {% if name %}#}
+{#    <h1> Welcome {{ name | default(default_name. true) | upper }}</h1>#}
+{#    {%  else %}#}
 <header>
     <nav>
         <a href="profile.html">פרופיל אישי</a>
-        <a href="Book1.html">ספרים חדשים</a>
+        <a href="Book.html">ספרים חדשים</a>
         <a href="Login.html">התנתקות</a>
     </nav>
 </header>
@@ -30,7 +35,7 @@
                 <button class="carousel-nav next">&#10094;</button>
                 <div class="carousel-track">
                     <div class="book-slide">
-                        <a href="Book1.html?id=2"><img src="../Photo2.jpg" alt="סיפור אגדה"></a>
+                        <a href="Book.html?id=2"><img src="../Photo2.jpg" alt="סיפור אגדה"></a>
                     </div>
                     <div class="book-slide">
                         <a href="Book2.html?id=1"><img src="../Photo4.jpg" alt="חתול תעלול"></a>

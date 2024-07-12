@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint
 
-# main_menu blueprint definition
-main_menu = Blueprint('main_menu', __name__, static_folder='static', static_url_path='/main_menu', template_folder='templates')
+main_menu = Blueprint('main_menu', __name__, template_folder='../../templates', static_folder='../../static')
+

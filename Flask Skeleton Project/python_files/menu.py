@@ -2,7 +2,7 @@ from flask import render_template
 from flask import Blueprint
 
 # about blueprint definition
-menu = Blueprint(
+menu_bp = Blueprint(
     'menu',
     __name__,
     static_folder='static',
@@ -12,6 +12,6 @@ menu = Blueprint(
 
 
 # Routes
-@menu.route('/menu')
-def index():
+@menu_bp.route('/menu')
+def menu():
     return render_template('menu.html')

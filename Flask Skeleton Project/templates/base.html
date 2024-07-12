@@ -51,7 +51,9 @@ Base page blocks:
 
         {# CSS #}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>
-        {% block page_head_css %}{% endblock %}
+        {% block page_head_css %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/main_menu.css') }}">
+        {% endblock %}
     {% endblock %}
     </head>
     <body>
@@ -99,6 +101,8 @@ Base page blocks:
 
         {# JS #}
         <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-        {% block page_body_js %}{% endblock %}
+        {% block page_body_js %}
+            <script src="{{ url_for('static', filename='js/main_menu.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
