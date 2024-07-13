@@ -10,7 +10,6 @@ menu_bp = Blueprint(
     template_folder='templates'
 )
 
-
 # Routes
 @menu_bp.route('/menu')
 def menu():

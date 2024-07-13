@@ -37,37 +37,46 @@ app.register_blueprint(main_menu)
 def hello():
     return 'Hello'
 
+
 @app.route('/menu')
 def menu():
     return render_template('menu.html')
+
 
 @app.route('/base')
 def base():
     return render_template('base.html')
 
+
 @app.route('/login')
 def login():
     return render_template('Login.html')
+
 
 @app.route('/homePage')
 def homePage():
     return render_template('HomePage.html')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 @app.route('/profile')
 def profile():
-    return render_template('Profile.html')
+    return render_template('profile.html')
+
 
 @app.route('/book')
 def book():
     return render_template('Book.html')
 
-@app.errorhandler(500)
-def internal_error(error):
-    return "500 error", 500
+
+# @app.errorhandler(500)
+# def internal_error(error):
+#     return "500 error", 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
