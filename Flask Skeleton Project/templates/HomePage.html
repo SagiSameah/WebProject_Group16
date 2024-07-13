@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readiculous - Home Page</title>
-    <link rel="stylesheet" href="../HomePage.css">
-    <link rel="stylesheet" href="../General.css">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/HomePage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
           rel="stylesheet">
     <script src="Flask%20Skeleton%20Project/static/static/js%20files/Authentication.js" defer></script>
@@ -52,6 +52,9 @@
                     <div class="book-slide">
                         <a href="Book6.html?id=6"><img src="../Photo1.jpg" alt="אגדות דשא"></a>
                     </div>
+{#                    {% for book in books %}#} //run on all books
+{#                        <li> {{  book }}</li>#} //currently a list, need to change
+{#                    {% endfor %}#}
                 </div>
                 <button class="carousel-nav prev">&#10095;</button>
             </div>

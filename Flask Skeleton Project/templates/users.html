@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About Page
+{% endblock %}
+
+{% block main %}
+
+    <h1>Get User From DB</h1>
+
+    <form action="/users" method="GET">
+        <input type="number" name="user_id">
+        <input type="submit" value="GET USER">
+    </form>
+
+    {% if user_id %}
+        <h2>The ID of the User is:</h2>
+        <h2>{{ user_id }}</h2>
+    {% endif %}
+
+{% endblock %}

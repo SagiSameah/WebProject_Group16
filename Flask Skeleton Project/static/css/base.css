@@ -2,9 +2,54 @@
 
 * { box-sizing: border-box; }
 
-body {
+header {
+    background-color: #79CDF1;
+    text-align: right;
     margin: 0;
-    font-family: var(--xsite-font-family);
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: right;
+    background-color: #79CDF1;
+}
+
+nav a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1.main-title {
+    color: #79CDF1;
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Istok Web', sans-serif;
+    margin-top: 30px;
+    margin-bottom: 2px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    direction: rtl;
+    text-align: right;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #F5F5F5;
+    padding-bottom: 10px;
 }
 
 a[href] {
