@@ -4,21 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastNameInput = document.getElementById("lastName");
     const passwordInput = document.getElementById("password");
     const confirmPasswordInput = document.getElementById("confirmPassword");
-    const birthDateField = document.getElementById('birthDate');
     const form = document.getElementById("registerForm");
-    document.getElementById("birthDate").addEventListener("click", showCalendar);
-    document.querySelector(".calendar-icon").addEventListener("click", showCalendar);
 
     firstNameInput.addEventListener('input', function () {
         this.value = this.value.replace(/[^a-zA-Z\u0590-\u05FF]/g, '');
         validateLanguage(this.value, 'firstNameError');
-
     });
 
     lastNameInput.addEventListener('input', function () {
         this.value = this.value.replace(/[^a-zA-Z\u0590-\u05FF]/g, '');
         validateLanguage(this.value, 'lastNameError');
-
     });
 
     function validateLanguage(value, errorElementId) {
@@ -42,22 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = 'HomePage.html';
+        window.location.href = "{{ url_for('home') }}";
     });
+
 
     function validateEmail() {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(emailInput.value);
-    }
-
-    function validateBirthDate() {
-        const birthDateInput = birthDateField.value;
-        const [day, month, year] = birthDateInput.split('/');
-        const birthDate = new Date(`${year}-${month}-${day}`);
-        const startDate = new Date('1900-01-01');
-        const endDate = new Date('2020-12-31');
-
-        return birthDate >= startDate && birthDate <= endDate;
     }
 
     function validatePassword() {
@@ -79,10 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (!validateConfirmPassword()) {
             errorMessage += "\nPasswords do not match\n";
-        }
-        if (!validateBirthDate()) {
-            alert('Not a valid birthdate! Unless you\'re under 4 years old or over 120... 😉');
-            return;
         }
         if (!firstNameInput.value.trim() || !lastNameInput.value.trim()) {
             errorMessage += "Please fill in all required fields.\n";
@@ -120,31 +102,19 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(closeButton);
         document.body.appendChild(modal);
     }
+
+    // Initialize the calendar permanently
+    const calendarContainer = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarContainer, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        locale: 'he',
+        dateClick: function (info) {
+            const birthDateInput = document.getElementById('birthDate');
+            const date = new Date(info.dateStr);
+            const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+            birthDateInput.value = formattedDate;
+        }
+    });
+    calendar.render();
 });
-
-function showCalendar() {
-    const birthDateInput = document.getElementById("birthDate");
-
-    const calendar = document.createElement("input");
-    calendar.type = "date";
-    calendar.style.position = "absolute";
-    calendar.style.visibility = "visible";
-
-    // Ensure calendar is removed if already present
-    const existingCalendar = document.querySelector(".calendar");
-    if (existingCalendar) {
-        document.body.removeChild(existingCalendar);
-    }
-
-    document.body.appendChild(calendar);
-    calendar.click();
-
-    calendar.onchange = function () {
-        const date = new Date(calendar.value);
-        const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-        birthDateInput.value = formattedDate;
-        document.body.removeChild(calendar);
-    };
-
-    calendar.classList.add("calendar");
-}

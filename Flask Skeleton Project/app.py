@@ -53,8 +53,8 @@ def login():
     return render_template('Login.html')
 
 
-@app.route('/homePage')
-def homePage():
+@app.route('/home')
+def home():
     return render_template('HomePage.html')
 
 
