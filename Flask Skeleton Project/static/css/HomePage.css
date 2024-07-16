@@ -1,18 +1,22 @@
 .quote-section {
     text-align: center;
-    margin-top: 0.1rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
 }
 
 .quote {
     font-family: 'Inknut Antiqua', serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: 1rem;
 }
 
 .search-container {
-    width: 100%;
+    width: 80%;
     text-align: center;
+    margin: 20px auto;
 }
 
 #searchBox {
@@ -62,9 +66,9 @@
 
 .carousel-track {
     display: flex;
-    gap: 10px; /* Adjust the gap between slides */
+    gap: 10px;
     transition: transform 0.4s ease-in-out;
-    width: calc((100% + 100px) * 6); /* Adjust based on the number of total slides and gap */
+    width: calc((100% + 100px) * 6);
 }
 
 .book-slide {
@@ -137,8 +141,9 @@
 
 .filters-section {
     position: fixed;
-    top: 8.5%;
-    width: 220px;
+    top: 5.5%;
+    right: 0;
+    height: 88.5%;
     margin-left: auto;
     padding: 15px;
     background-color: #f9f9f9;
@@ -147,9 +152,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: 'Inknut Antiqua', serif;
     z-index: 1000;
-    /*max-height: calc(100vh - 100px);*/
-    /*overflow-y: auto;*/
-
+    overflow-y: auto;
 }
 
 .filters-section h2 {
@@ -204,7 +207,7 @@
 }
 
 button {
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 8px 16px;
     font-size: 1rem;
     background-color: #007bff;
@@ -221,12 +224,12 @@ button:hover {
 .filter-group.pages-group {
     display: flex;
     align-items: center;
-    margin-top: 5px; /* Add some space above the group */
+    margin-top: 15px;
 }
 
 .filter-group.pages-group input[type="number"] {
-    margin-left: 5px;
-    width: 84px; /* Adjust width as needed */
+    margin-left: 15px;
+    width: 100px;
 }
 
 .filter-group.pages-group label {
@@ -236,9 +239,9 @@ button:hover {
 
 @media screen and (max-width: 1068px) {
     .fun-fact-section, .filters-section {
-        position: static; /* Reset to static positioning */
+        position: static;
         width: auto;
-        margin: 10px; /* Adjust margin as needed */
+        margin: 10px;
     }
 }
 
