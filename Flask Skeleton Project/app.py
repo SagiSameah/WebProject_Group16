@@ -71,7 +71,6 @@ def profile():
 def register():
     return render_template('register.html')
 
-
 @app.route('/book')
 def book():
     return render_template('Book.html')
