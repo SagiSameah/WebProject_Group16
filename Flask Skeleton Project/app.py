@@ -67,6 +67,9 @@ def about():
 def profile():
     return render_template('profile.html')
 
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 @app.route('/book')
 def book():

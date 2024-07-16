@@ -1,6 +1,8 @@
 @import "variables.css";
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 header {
     background-color: #79CDF1;
@@ -11,18 +13,22 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
+    padding: 1rem 0;
 }
 
 nav {
     display: flex;
-    justify-content: right;
+    justify-content: space-around;
     background-color: #79CDF1;
+    align-items: center;
+    height: 1rem;
 }
 
 nav a {
     margin: 0 1rem;
     color: white;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
 nav a:hover {
@@ -34,8 +40,11 @@ h1.main-title {
     text-align: center;
     font-size: 5rem;
     font-family: 'Istok Web', sans-serif;
-    margin-top: 30px;
+    margin-top: 25px;
     margin-bottom: 2px;
+    position: fixed;
+    top: 25px;
+    width: 100%;
 }
 
 body {
@@ -49,7 +58,32 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     background-color: #F5F5F5;
-    padding-bottom: 10px;
+    /*padding-top: 120px;*/
+    overflow-x: hidden;
+    /*overflow-y: hidden;*/
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Ensure content starts at the top */
+    align-items: center; /* Center content horizontally */
+}
+
+footer {
+    background-color: #79CDF1;
+    color: white;
+    text-align: left;
+    width: 100%;
+    position: absolute;
+    /*bottom: 0;*/
+}
+
+footer .trademark {
+    left: 15px;
+    font-size: 1.2rem; /* Adjust size of trademark symbol */
+    vertical-align: top; /* Align trademark symbol */
+    margin-left: 0.2rem; /* Add space between text and trademark symbol */
 }
 
 a[href] {

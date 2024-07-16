@@ -1,9 +1,9 @@
 {#
-Base page variables:
--- page_lang | default: 'en'
--- page_head_title_author | default: 'Barak Pinchovski'
--- page_head_title | default: 'Flask skeleton project'
-#}
+{#Base page variables:#}
+{#-- page_lang | default: 'en'#}
+{#-- page_head_title_author | default: 'Barak Pinchovski'#}
+{#-- page_head_title | default: 'Flask skeleton project'#}
+{##}
 
 {#
 Base page blocks:
@@ -33,11 +33,11 @@ Base page blocks:
 {#<html lang="{{ page_lang|default("en", true) }}">#}
 {#<head>#}
 {#    {% block page_head %}#}
-        {# Title #}
+{# Title #}
 {#        <title>{{ page_head_title_author|default('Barak Pinchovski', true) }}#}
 {#            | {{ page_head_title|default('Flask skeleton project', true) }}</title>#}
 {##}
-        {# Meta tags #}
+{# Meta tags #}
 {#        {% block page_head_meta %}#}
 {#            <base href="/"/>#}
 {#            <meta charset="UTF-8"/>#}
@@ -48,13 +48,13 @@ Base page blocks:
 {#            {% block page_head_meta_extra %}{% endblock %}#}
 {#        {% endblock %}#}
 {##}
-        {# favicon #}
+{# favicon #}
 {#        <link rel="icon" href="{{ url_for('static', filename='media/img/favicon/flask-favicon.png') }}"/>#}
 {##}
-        {# Base #}
+{# Base #}
 {#        <base href="/"/>#}
 {##}
-        {# CSS #}
+{# CSS #}
 {#        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>#}
 {#        {% block page_head_css %}#}
 {#            <link rel="stylesheet" href="{{ url_for('static', filename='css/main_menu.css') }}">#}
@@ -66,12 +66,12 @@ Base page blocks:
 {#    {% include 'Header.html' %}#}
 {#    {% include 'Footer.html' %}#}
 {##}
-    {# Header #}
+{# Header #}
 {#    {% block page_body_header %}#}
 {#        <header class="page-header">#}
 {#            {% block page_body_header_content %}#}
 {##}
-                {# Main Menu #}
+{# Main Menu #}
 {#                {% block page_body_header_content__main_menu %}#}
 {#                    <nav class="main-menu">#}
 {#                        {% block page_body_header_content__main_menu_content %}#}
@@ -88,7 +88,7 @@ Base page blocks:
 {#        </header>#}
 {#    {% endblock %}#}
 {##}
-    {# Main #}
+{# Main #}
 {#    {% block page_body_main %}#}
 {#        <main class="page-main">#}
 {#            {% block page_body_main_content %}#}
@@ -96,7 +96,7 @@ Base page blocks:
 {#        </main>#}
 {#    {% endblock %}#}
 {##}
-    {# Footer #}
+{# Footer #}
 {#    {% block page_body_footer %}#}
 {#        <footer class="page-footer">#}
 {#            {% block page_body_footer_content %}#}
@@ -124,18 +124,19 @@ Base page blocks:
     <title>{% block title %}
         {{ page_head_title|default('Base') }}
     {% endblock %}</title>
-{#    <link rel="stylesheet" href="../static/index.css">#}
-    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
+    {% block page_head_css %}{% endblock %}
 </head>
 <body>
-
 {% include('header.html') %}
+<main>
+    {% block main %}
 
-{% block main %}
-<h2>THIS IS TEXT INSIDE A BLOCK</h2>
-{% endblock %}
-
+    {% endblock %}
+</main>
 {% include('footer.html') %}
-{#<script src="../static/js/fetch_example.js"></script>#}
+{% block page_body_js %}{% endblock %}
 </body>
 </html>
+
