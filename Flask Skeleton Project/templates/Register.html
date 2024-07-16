@@ -1,63 +1,54 @@
-<!DOCTYPE html>
-<html lang="he">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="../Register.css">
-    <link rel="stylesheet" href="../General.css">
+{% extends 'base.html' %}
+
+{% set page_head_title = 'Register' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Register.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
           rel="stylesheet">
-</head>
-<body>
-<header>
-    <nav>
-        <a href="Login.html">התחברות</a>
-    </nav>
-</header>
-<main>
-    <h1 class="main-title">Readiculous</h1>
-    <h2 class="subtitle">הרשמה כמשתמש חדש</h2>
-    <div class="register-box">
-        <form id="registerForm">
-            <div class="form-group">
-                <div class="form-column">
-                    <label for="email">כתובת דואר אלקטרוני:</label>
-                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet"/>
+{% endblock %}
 
-                    <label for="firstName">שם פרטי:</label>
-                    <input type="text" id="firstName" name="firstName" required>
-                    <div id="firstNameError" class="error-message"></div>
+{% block main %}
+    <main>
+        <h2 class="subtitle">הרשמה כמשתמש חדש</h2>
+        <div class="register-box">
+            <form id="registerForm">
+                <div class="form-group">
+                    <div class="form-column">
+                        <label for="email">כתובת דואר אלקטרוני:</label>
+                        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
 
-                    <label for="lastName">שם משפחה:</label>
-                    <input type="text" id="lastName" name="lastName" required>
-                    <div id="lastNameError" class="error-message"></div>
+                        <label for="firstName">שם פרטי:</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div id="firstNameError" class="error-message"></div>
 
-                </div>
-                <div class="form-column">
-                    <label for="birthDate">תאריך לידה (dd/mm/yyyy):</label>
-                    <div class="birth-date-container">
-                        <input type="text" id="birthDate" name="birthDate" placeholder="dd/mm/yyyy" required
-                               onclick="showCalendar()">
-                        <span class="calendar-icon" onclick="showCalendar()">📅</span>
+                        <label for="lastName">שם משפחה:</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div id="lastNameError" class="error-message"></div>
                     </div>
-                    <label for="password">בחירת סיסמא:</label>
-                    <input type="password" id="password" name="password" required>
-                    <label for="confirmPassword">וידוא סיסמא:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <div class="form-column">
+                        <label for="birthDate">תאריך לידה (dd/mm/yyyy):</label>
+                        <div class="birth-date-container">
+                            <input type="text" id="birthDate" name="birthDate" placeholder="dd/mm/yyyy">
+                            <div id="calendar" class="calendar"></div>
+                        </div>
+                        <label for="password">בחירת סיסמא:</label>
+                        <input type="password" id="password" name="password" required>
+                        <label for="confirmPassword">וידוא סיסמא:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="register-button">הרשמה</button>
-        </form>
-    </div>
-    <div class="quote-sction">
-        <p class="quote"> "Reading is essential for those who seek to rise above the ordinary"<br>
-            Jim Rohn -</p>
-    </div>
-</main>
-<footer>
-    <p>&copy; 2024 Readiculous</p>
-</footer>
-<script src="../Register.js"></script>
-</body>
-</html>
+                <button type="submit" class="register-button">הרשמה</button>
+            </form>
+        </div>
+        <div class="quote-section">
+            <p class="quote">"Reading is essential for those who seek to rise above the ordinary"<br> Jim Rohn -</p>
+        </div>
+    </main>
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('static', filename='js/Register.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+{% endblock %}
