@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from connector_db import get_user_by_username, update_user
+from python_files.connector_db import *
 
 # homepage blueprint definition
 profile_bp = Blueprint(
@@ -18,7 +18,6 @@ def profile():
 
     user = get_user_by_username(session['username'])
     return render_template('profile.html', user=user)
-
 
 @profile_bp.route('/update_profile', methods=['POST'])
 def update_profile():

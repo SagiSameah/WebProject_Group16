@@ -68,13 +68,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('savePersonalInfo').addEventListener('click', () => {
-        if (firstNameInput.value) displayFirstName.textContent = firstNameInput.value;
-        if (lastNameInput.value) displayLastName.textContent = lastNameInput.value;
-        if (emailInput.value) displayEmail.textContent = emailInput.value;
-        if (birthDateInput.value) displayBirthDate.textContent = birthDateInput.value;
-        if (genderSelect.value) displayGender.textContent = genderSelect.value === 'male' ? 'זכר' : 'נקבה';
-        if (passwordInput.value) displayPassword.textContent = passwordInput.value;
-        personalInfoPopup.style.display = 'none';
+        const updatedData = {
+            firstName: firstNameInput.value,
+            lastName: lastNameInput.value,
+            email: emailInput.value,
+            birthDate: birthDateInput.value,
+            gender: genderSelect.value,
+            password: passwordInput.value
+        };
+        fetch('/update_profile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        }).then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  if (firstNameInput.value) displayFirstName.textContent = firstNameInput.value;
+                  if (lastNameInput.value) displayLastName.textContent = lastNameInput.value;
+                  if (emailInput.value) displayEmail.textContent = emailInput.value;
+                  if (birthDateInput.value) displayBirthDate.textContent = birthDateInput.value;
+                  if (genderSelect.value) displayGender.textContent = genderSelect.value === 'male' ? 'זכר' : 'נקבה';
+                  if (passwordInput.value) displayPassword.textContent = passwordInput.value;
+                  personalInfoPopup.style.display = 'none';
+              } else {
+                  alert('Error updating profile');
+              }
+          });
     });
 
     document.getElementById('updateGenres').addEventListener('click', () => {
@@ -90,11 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('closeGenresPopup').addEventListener('click', () => {
         genresPopup.style.display = 'none';
         updateSelectedItemsDisplay(selectedGenresContainer, selectedGenres);
+        saveGenres();
     });
 
     document.getElementById('closeAuthorsPopup').addEventListener('click', () => {
         authorsPopup.style.display = 'none';
         updateSelectedItemsDisplay(selectedAuthorsContainer, selectedAuthors);
+        saveAuthors();
     });
 
     document.getElementById('closePersonalInfoPopup').addEventListener('click', () => {
@@ -105,13 +128,45 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = Array.from(selectedItems).map(item => `<span class="selected-item">${item}</span>`).join(', ');
     }
 
+    function saveGenres() {
+        fetch('/update_genres', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ genres: Array.from(selectedGenres) })
+        }).then(response => response.json())
+          .then(data => {
+              if (!data.success) {
+                  alert('Error updating genres');
+              }
+          });
+    }
+
+    function saveAuthors() {
+        fetch('/update_authors', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ authors: Array.from(selectedAuthors) })
+        }).then(response => response.json())
+          .then(data => {
+              if (!data.success) {
+                  alert('Error updating authors');
+              }
+          });
+    }
+
     window.onclick = function (event) {
         if (event.target === genresPopup) {
             genresPopup.style.display = "none";
             updateSelectedItemsDisplay(selectedGenresContainer, selectedGenres);
+            saveGenres();
         } else if (event.target === authorsPopup) {
             authorsPopup.style.display = "none";
             updateSelectedItemsDisplay(selectedAuthorsContainer, selectedAuthors);
+            saveAuthors();
         } else if (event.target === personalInfoPopup) {
             personalInfoPopup.style.display = "none";
         }

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from connector_db import add_user, get_user_by_username
+from python_files.connector_db import *
 
 register_bp = Blueprint('register',
                      __name__,
