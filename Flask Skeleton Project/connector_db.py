@@ -37,9 +37,6 @@ def delete_user(username):
 def find_user_by_email(email):
     return db.users.find_one({"email": email})
 
-def update_user(email, updated_data):
-    db.users.update_one({"email": email}, {"$set": updated_data})
-
 def update_user_genres(email, genres):
     db.users.update_one({"email": email}, {"$set": {"genres": genres}})
 

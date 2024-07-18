@@ -5,8 +5,9 @@ from python_files.HomePage import homepage_bp
 from python_files.Login import login_bp
 from python_files.menu import menu_bp
 from python_files.profile import profile_bp
+from python_files.Register import register_bp
 from components.main_menu.main_menu import main_menu
-from python_files.connector_db import *
+from connector_db import *
 import logging
 from logging import FileHandler, Formatter
 import os
@@ -38,6 +39,7 @@ app.register_blueprint(homepage_bp)
 app.register_blueprint(login_bp)
 app.register_blueprint(menu_bp)
 app.register_blueprint(profile_bp)
+app.register_blueprint(register_bp)  # Register the register blueprint
 app.register_blueprint(main_menu)
 
 # Connect to MongoDB

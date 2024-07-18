@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "{{ url_for('home') }}";
     });
 
+
     function validateEmail() {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(emailInput.value);

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from python_files.connector_db import *
+from ..connector_db import *
 
 login_bp = Blueprint('login',
                      __name__,
