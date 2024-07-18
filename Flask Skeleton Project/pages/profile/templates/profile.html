@@ -1,18 +1,118 @@
 {% extends 'base.html' %}
 
-{% set page_head_title = 'My Profile' %}
+{% set page_head_title = 'Profile' %}
 
 {% block page_head_css %}
-    <link rel="stylesheet" href="{{ url_for('about.static', filename='css/about.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Profile.css') }}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
+          rel="stylesheet">
 {% endblock %}
 
-{% block page_body_main_content %}
-    <h1>Welcome to your Profile!</h1>
-    <p>About you...</p>
-{% endblock %}
+{% block main %}
+    <main>
+        <div class="profile-container">
+            <div class="personal-info-section">
+                <img src="{{ url_for('static', filename='photo7_blank_user_pic.png') }}" alt="Profile Picture"
+                     class="profile-picture">
+                <div class="profile-info-vertical">
+                    <div class="profile-info">
+                        <div>
+                            <label for="firstName">שם פרטי:</label>
+                            <input type="text" id="firstName" name="firstName" value="John">
+                        </div>
+                        <div>
+                            <label for="lastName">שם משפחה:</label>
+                            <input type="text" id="lastName" name="lastName" value="Doe">
+                        </div>
+                        <div>
+                            <label for="birthDate">תאריך לידה:</label>
+                            <input type="text" id="birthDate" name="birthDate" value="01/01/2000">
+                        </div>
+                        <div>
+                            <label for="gender">מין:</label>
+                            <select id="gender" name="gender">
+                                <option value="male" selected>זכר</option>
+                                <option value="female">נקבה</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="password">סיסמא:</label>
+                            <input type="password" id="password" name="password" value="password">
+                        </div>
+                    </div>
 
-{% block page_body_footer %}{% endblock %}
+                </div>
+                <button class="editPersonalInfo" id="editPersonalInfo">עדכון פרטים אישיים</button>
+            </div>
+            <div class="button-section">
+                <button class="update-button" id="updateGenres">הז'אנרים שלי</button>
+                <div id="selectedGenresContainer"></div>
+                <button class="update-button" id="updateAuthors">הסופרים שלי</button>
+                <div id="selectedAuthorsContainer"></div>
+            </div>
+            <div id="genresPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close close-popup" id="closeGenresPopup">&times;</span>
+                    <h3>בחר/י את הז'אנרים המועדפים עלייך</h3>
+                    <h4>ניתן לבחור עד 5 אפשרויות</h4>
+                    <ul id="genresOptions" class="popup-options"></ul>
+                    <p id="genresErrorMsg" class="error-message"></p>
+                </div>
+            </div>
+            <div id="authorsPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close close-popup" id="closeAuthorsPopup">&times;</span>
+                    <h3>בחר/י את הסופרים/ות המועדפים עלייך</h3>
+                    <h4>ניתן לבחור עד 5 אפשרויות</h4>
+                    <ul id="authorsOptions" class="popup-options"></ul>
+                    <p id="authorsErrorMsg" class="error-message"></p>
+                </div>
+            </div>
+            <div id="personalInfoPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close close-popup" id="closePersonalInfoPopup">&times;</span>
+                    <h3>עדכון מידע אישי</h3>
+                    <div class="profile-info">
+                        <label for="firstName">שם פרטי:</label>
+                        <input type="text" id="firstName" name="firstName">
+
+                        <label for="lastName">שם משפחה:</label>
+                        <input type="text" id="lastName" name="lastName">
+
+                        <label for="birthDate">תאריך לידה:</label>
+                        <input type="text" id="birthDate" name="birthDate">
+
+                        <label for="gender">מין:</label>
+                        <select id="gender" name="gender">
+                            <option value="male">זכר</option>
+                            <option value="female">נקבה</option>
+                        </select>
+
+                        <label for="password">סיסמא:</label>
+                        <input type="password" id="password" name="password">
+
+                        <button class="update-button" id="savePersonalInfo">שמור</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
 
 {% block page_body_js %}
-    <script src="{{ url_for('profile.static', filename='js/profile.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Profile.js') }}"></script>
+    <script>
+        document.getElementById('editPersonalInfo').onclick = function () {
+            document.getElementById('personalInfoPopup').style.display = 'block';
+        }
+        document.getElementById('closePersonalInfoPopup').onclick = function () {
+            document.getElementById('personalInfoPopup').style.display = 'none';
+        }
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('personalInfoPopup')) {
+                document.getElementById('personalInfoPopup').style.display = 'none';
+            }
+        }
+    </script>
 {% endblock %}
+

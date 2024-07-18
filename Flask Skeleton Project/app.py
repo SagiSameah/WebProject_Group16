@@ -1,20 +1,44 @@
-from flask import Flask, render_template, redirect, url_for
-from python_files.about import about_bp
-from python_files.catalog import catalog_bp
-from python_files.HomePage import homepage_bp
-from python_files.Login import login_bp
-from python_files.menu import menu_bp
-from python_files.profile import profile_bp
-from components.main_menu.main_menu import main_menu
+from flask import Flask, render_template
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 import logging
 from logging import FileHandler, Formatter
 import os
 
-template_dir = os.path.abspath('Flask Skeleton Project/templates')
-static_dir = os.path.abspath('Flask Skeleton Project/static')
+app = Flask(__name__)
+app.secret_key = '123'
 
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 app.config.from_pyfile('settings.py')
+
+#--------------------MongoDB---------------------#
+
+uri = "mongodb+srv://sagisa:WebProject16@cluster0.o0f3cvg.mongodb.net/Readiculous_WebProject16"
+cluster = MongoClient(uri, server_api=ServerApi('1'))
+
+# home
+from pages.homePage import homePage
+app.register_blueprint(homePage, current_page='homePage')
+
+# about
+from pages.about import about
+app.register_blueprint(about, current_page='about')
+
+# book
+from pages.book import book
+app.register_blueprint(book, current_page='book')
+
+# login
+from pages.login import login
+app.register_blueprint(login, current_page='login')
+
+# profile
+from pages.profile import profile
+app.register_blueprint(profile, current_page='profile')
+
+# registration
+from pages.register import register
+app.register_blueprint(register, current_page='register')
+
 
 # Enable logging
 if not app.debug:
@@ -22,15 +46,6 @@ if not app.debug:
     file_handler.setLevel(logging.WARNING)
     file_handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
     app.logger.addHandler(file_handler)
-
-# Register blueprints
-app.register_blueprint(about_bp)
-app.register_blueprint(catalog_bp)
-app.register_blueprint(homepage_bp)
-app.register_blueprint(login_bp)
-app.register_blueprint(menu_bp)
-app.register_blueprint(profile_bp)
-app.register_blueprint(main_menu)
 
 @app.route('/')
 @app.route('/home')
@@ -74,11 +89,6 @@ def register():
 @app.route('/book')
 def book():
     return render_template('Book.html')
-
-
-# @app.errorhandler(500)
-# def internal_error(error):
-#     return "500 error", 500
 
 
 if __name__ == '__main__':
