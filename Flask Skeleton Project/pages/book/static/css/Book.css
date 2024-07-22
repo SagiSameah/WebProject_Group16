@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 10rem;
-    /*margin: 2rem auto;*/
+    /margin: 2rem auto;/
     padding: 2rem;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -233,5 +233,3 @@
 .delete-button {
     right: 70px;
 }
-
-
