@@ -1,20 +1,29 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
+from connector_db import users
 
-login_bp = Blueprint('login',
-                     __name__,
-                     static_folder='static',
-                     static_url_path='/login/static',
-                     template_folder='../../templates')
+# Login blueprint definition
+login_bp = Blueprint(
+    'login_bp',
+    __name__,
+    static_folder='static',
+    static_url_path='/login/static',
+    template_folder='templates'
+)
 
-
-@login_bp.route('/login', methods=['GET', 'POST'])
+# Route for login page
+@login_bp.route('/', methods=['GET'])
 def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        user = get_user_by_email(email)
-        if user and user['password'] == password:
-            return redirect(url_for('homePage'))
-        else:
-            return "Login Failed", 401
     return render_template('login.html')
+
+# Route for handling login
+@login_bp.route('/login', methods=['POST'])
+def login_user():
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
+    user = users.find_one({"email": email})
+    if user and user['password'] == password:
+        session['user_email'] = user['email']
+        session['first_name'] = user['first_name']
+        return jsonify({'success': True, 'redirect': url_for('homePage_bp.homePage')})
+    return jsonify({'success': False, 'message': 'Invalid email or password'}), 401
