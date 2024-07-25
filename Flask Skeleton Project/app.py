@@ -24,19 +24,19 @@ genres = db['genres']
 comments = db['comments']
 
 # Blueprint Imports
-from pages.register.register import register_bp
-from pages.homePage.homePage import homePage_bp
 from pages.login.login import login_bp
-from pages.about.about import about_bp
+from pages.homePage.homePage import homePage_bp
 from pages.book.book import book_bp
+from pages.register.register import register_bp
+from pages.about.about import about_bp
 from pages.profile.profile import profile_bp
 
 # Blueprint Registration
-app.register_blueprint(register_bp)
-app.register_blueprint(homePage_bp)
 app.register_blueprint(login_bp)
-app.register_blueprint(about_bp)
+app.register_blueprint(homePage_bp)
 app.register_blueprint(book_bp)
+app.register_blueprint(register_bp)
+app.register_blueprint(about_bp)
 app.register_blueprint(profile_bp)
 
 # Enable logging
@@ -46,9 +46,9 @@ if not app.debug:
     file_handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
     app.logger.addHandler(file_handler)
 
-# @app.route('/')
-# def index():
-#     return render_template('register.html')
+@app.route('/')
+def index():
+    return redirect(url_for('login_bp.login'))
 
 @app.route('/show_collections')
 def show_collections():

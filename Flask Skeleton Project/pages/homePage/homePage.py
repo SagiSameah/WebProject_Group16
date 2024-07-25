@@ -1,15 +1,32 @@
-from flask import Blueprint, render_template
+# from flask import Blueprint, render_template
+#
+# # HomePage blueprint definition
+# homePage_bp = Blueprint(
+#     'homePage_bp',
+#     __name__,
+#     static_folder='static',
+#     static_url_path='/homePage/static',
+#     template_folder='templates'
+# )
+#
+# # Routes
+# @homePage_bp.route('/', methods=['GET'])
+# def homePage():
+#     return render_template('homePage.html')
 
-# Homepage blueprint definition
-homepage_bp = Blueprint(
-    'homepage',
+from flask import Blueprint, render_template
+from connector_db import get_collection
+
+# HomePage blueprint definition
+homePage_bp = Blueprint(
+    'homePage_bp',
     __name__,
     static_folder='static',
-    static_url_path='/homepage/static',
+    static_url_path='/homePage/static',
     template_folder='templates'
 )
 
-# Routes
-@homepage_bp.route('/')
-def home():
-    return render_template('HomePage.html')
+@homePage_bp.route('/home')
+def homePage():
+    books = get_collection('books').find()
+    return render_template('homePage.html', books=books)

@@ -4,7 +4,8 @@
 
 {% block page_head_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/HomePage.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
+          rel="stylesheet">
 {% endblock %}
 
 {% block main %}
@@ -17,22 +18,30 @@
                     <button class="carousel-nav next">&#10094;</button>
                     <div class="carousel-track">
                         <div class="book-slide">
-                            <a href="../../book/templates/Book.html?id=2"><img src="{{ url_for('static', filename='Photo2.jpg') }}" alt="סיפור אגדה"></a>
+                            <a href="../../book/templates/Book.html?id=2"><img
+                                    src="{{ url_for('static', filename='Photo2.jpg') }}" alt="סיפור אגדה"></a>
                         </div>
                         <div class="book-slide">
-                            <a href="../../../templates/Book2.html?id=1"><img src="{{ url_for('static', filename='Photo4.jpg') }}" alt="חתול תעלול"></a>
+                            <a href="../../../templates/Book2.html?id=1"><img
+                                    src="{{ url_for('static', filename='Photo4.jpg') }}" alt="חתול תעלול"></a>
                         </div>
                         <div class="book-slide">
-                            <a href="../../../templates/Book3.html?id=3"><img src="{{ url_for('static', filename='Photo3.jpg') }}" alt="על הדברים החשובים באמת"></a>
+                            <a href="../../../templates/Book3.html?id=3"><img
+                                    src="{{ url_for('static', filename='Photo3.jpg') }}"
+                                    alt="על הדברים החשובים באמת"></a>
                         </div>
                         <div class="book-slide">
-                            <a href="../../../templates/Book4.html?id=4"><img src="{{ url_for('static', filename='Photo5.jpg') }}" alt="בן המלך והעני"></a>
+                            <a href="../../../templates/Book4.html?id=4"><img
+                                    src="{{ url_for('static', filename='Photo5.jpg') }}" alt="בן המלך והעני"></a>
                         </div>
                         <div class="book-slide">
-                            <a href="../../../templates/Book5.html?id=5"><img src="{{ url_for('static', filename='Photo6.jfif') }}" alt="הארי פוטר ואבן החכמים"></a>
+                            <a href="../../../templates/Book5.html?id=5"><img
+                                    src="{{ url_for('static', filename='Photo6.jfif') }}"
+                                    alt="הארי פוטר ואבן החכמים"></a>
                         </div>
                         <div class="book-slide">
-                            <a href="../../../templates/Book6.html?id=6"><img src="{{ url_for('static', filename='Photo1.jpg') }}" alt="אגדות דשא"></a>
+                            <a href="../../../templates/Book6.html?id=6"><img
+                                    src="{{ url_for('static', filename='Photo1.jpg') }}" alt="אגדות דשא"></a>
                         </div>
                     </div>
                     <button class="carousel-nav prev">&#10095;</button>
@@ -96,6 +105,7 @@
 {% endblock %}
 
 {% block page_body_js %}
+    <script src="{{ url_for('static', filename='js/HomePage.js') }}"></script>
     <script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
     <script src="{{ url_for('static', filename='js/funFacts.js') }}"></script>
     <script src="{{ url_for('static', filename='js/Filter.js') }}"></script>

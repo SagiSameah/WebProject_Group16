@@ -1,27 +1,35 @@
-function validateAndRedirect() {
-    const emailInput = document.getElementById("username").value;
-    const passwordInput = document.getElementById("password").value;
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
+    loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        const email = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
-    const isEmailValid = emailPattern.test(emailInput);
-    const isPasswordValid = passwordPattern.test(passwordInput);
-
-    if (isEmailValid && isPasswordValid) {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = 'HomePage.html';
-    } else {
-        let errorMessage = 'Please fix the following errors:\n';
-        if (!isEmailValid) {
-            errorMessage += 'Please enter a valid email address.\n';
-        }
-        if (!isPasswordValid) {
-            errorMessage += 'Password must be at least 8 characters long and contain an uppercase letter, lowercase letter, and one number\n';
-        }
-        showModal(errorMessage);
-    }
-}
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect;
+            } else {
+                showModal(data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            showModal("An error occurred. Please try again.");
+        });
+    });
+});
 
 function showModal(message) {
     const modal = document.getElementById("errorModal");
@@ -41,12 +49,3 @@ function showModal(message) {
         }
     };
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById("loginForm");
-    loginForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        validateAndRedirect();
-    });
-});
-
