@@ -101,18 +101,4 @@
 
 {% block page_body_js %}
     <script src="{{ url_for('static', filename='js/Profile.js') }}"></script>
-    <script>
-        document.getElementById('editPersonalInfo').onclick = function () {
-            document.getElementById('personalInfoPopup').style.display = 'block';
-        }
-        document.getElementById('closePersonalInfoPopup').onclick = function () {
-            document.getElementById('personalInfoPopup').style.display = 'none';
-        }
-        window.onclick = function (event) {
-            if (event.target == document.getElementById('personalInfoPopup')) {
-                document.getElementById('personalInfoPopup').style.display = 'none';
-            }
-        }
-    </script>
 {% endblock %}
-

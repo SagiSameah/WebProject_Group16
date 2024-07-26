@@ -101,6 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
         personalInfoPopup.style.display = 'none';
     });
 
+    document.getElementById('editPersonalInfo').onclick = function () {
+        document.getElementById('personalInfoPopup').style.display = 'block';
+    }
+    document.getElementById('closePersonalInfoPopup').onclick = function () {
+        document.getElementById('personalInfoPopup').style.display = 'none';
+    }
+    window.onclick = function (event) {
+        if (event.target == document.getElementById('personalInfoPopup')) {
+            document.getElementById('personalInfoPopup').style.display = 'none';
+        }
+    }
+
     function updateSelectedItemsDisplay(container, selectedItems) {
         container.innerHTML = Array.from(selectedItems).map(item => `<span class="selected-item">${item}</span>`).join(', ');
     }

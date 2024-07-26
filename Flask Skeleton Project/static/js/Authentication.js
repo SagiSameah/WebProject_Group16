@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isLoggedIn) {
         const protectedPages = [
-            "homePage.html",
-            "profile.html",
+            "HomePage.html",
+            "Profile.html",
             "books-rated.html",
             "new-books.html"
         ];

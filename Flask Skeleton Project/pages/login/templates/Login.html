@@ -11,10 +11,10 @@
     <main>
         <h2 class="subtitle">המקום לאנשים שאוהבים ספרים</h2>
         <div class="login-box">
-            <form id="loginForm">
+            <form id="loginForm" method="post" action="{{ url_for('login_bp.submit') }}">
                 <div class="form-group">
-                    <label for="username">כתובת דוא"ל:</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="email">כתובת דוא"ל:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">סיסמא:</label>

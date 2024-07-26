@@ -12,7 +12,7 @@
 # # Routes
 # @homePage_bp.route('/', methods=['GET'])
 # def homePage():
-#     return render_template('homePage.html')
+#     return render_template('HomePage.html')
 
 from flask import Blueprint, render_template
 from connector_db import get_collection
@@ -29,4 +29,4 @@ homePage_bp = Blueprint(
 @homePage_bp.route('/home')
 def homePage():
     books = get_collection('books').find()
-    return render_template('homePage.html', books=books)
+    return render_template('HomePage.html', books=books)

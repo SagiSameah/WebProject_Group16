@@ -39,8 +39,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 
 # Access the database
 db = client["Readiculous_WebProject16"]
-users = db['users']
-books = db['books']
+users_col = db['users']
+books_col = db['books']
 
 # Function to get collection
 def get_collection(name):
@@ -49,39 +49,39 @@ def get_collection(name):
 # CRUD operations for users
 def add_user(user_data):
     try:
-        users.insert_one(user_data)
+        users_col.insert_one(user_data)
     except Exception as e:
         print(f"Error adding user: {e}")
 
 def get_user_by_email(email):
     try:
-        return users.find_one({"email": email})
+        return users_col.find_one({"email": email})
     except Exception as e:
         print(f"Error fetching user: {e}")
         return None
 
 def update_user(email, updated_data):
     try:
-        users.update_one({"email": email}, {"$set": updated_data})
+        users_col.update_one({"email": email}, {"$set": updated_data})
     except Exception as e:
         print(f"Error updating user: {e}")
 
 def delete_user(email):
     try:
-        users.delete_one({"email": email})
+        users_col.delete_one({"email": email})
     except Exception as e:
         print(f"Error deleting user: {e}")
 
 # CRUD operations for books (add more as needed)
 def add_book(book_data):
     try:
-        books.insert_one(book_data)
+        books_col.insert_one(book_data)
     except Exception as e:
         print(f"Error adding book: {e}")
 
 def get_book_by_title(title):
     try:
-        return books.find_one({"title": title})
+        return books_col.find_one({"title": title})
     except Exception as e:
         print(f"Error fetching book: {e}")
         return None

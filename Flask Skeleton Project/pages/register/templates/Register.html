@@ -13,7 +13,7 @@
     <main>
         <h2 class="subtitle">הרשמה כמשתמש חדש</h2>
         <div class="register-box">
-            <form id="registerForm">
+            <form id="registerForm" method="post" action="{{ url_for('register_bp.register') }}">
                 <div class="form-group">
                     <div class="form-column">
                         <label for="email">כתובת דואר אלקטרוני:</label>
@@ -42,6 +42,13 @@
                 <button type="submit" class="register-button">הרשמה</button>
             </form>
         </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <div class="quote-section">
             <p class="quote">"Reading is essential for those who seek to rise above the ordinary"<br> Jim Rohn -</p>
         </div>

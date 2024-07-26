@@ -1,22 +1,3 @@
-# from flask import Blueprint
-# from flask import render_template, redirect, url_for
-#
-#
-# # homepage blueprint definition
-# profile_bp = Blueprint(
-#     'profile_bp',
-#     __name__,
-#     static_folder='static',
-#     static_url_path='/profile',
-#     template_folder='templates'
-# )
-#
-#
-# # Routes
-# @profile_bp.route('/profile')
-# def index():
-#     return render_template('profile.html')
-
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from connector_db import get_user_by_email, update_user
 
