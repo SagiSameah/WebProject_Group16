@@ -46,10 +46,6 @@ if not app.debug:
     file_handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
     app.logger.addHandler(file_handler)
 
-# @app.route('/')
-# def index():
-#     return redirect(url_for('login_bp.index'))
-
 @app.route('/show_collections')
 def show_collections():
     collections = db.list_collection_names()

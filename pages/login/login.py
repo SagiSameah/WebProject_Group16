@@ -41,7 +41,7 @@ def submit():
             if password == user['password']:
                 session['user_id'] = useremail
                 print(session['user_id'])
-                return redirect(url_for('profile_bp.profile'))  # Adjust this as necessary
+                return redirect(url_for('homePage_bp.homePage'))  # Adjust this as necessary
             return render_template('Login.html', error='Incorrect username or password')
         return render_template('Login.html', error='Incorrect username or password')
     return redirect(url_for('login_bp.index'))

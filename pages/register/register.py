@@ -36,5 +36,5 @@ def register():
         }
         add_user(user_data)
         flash('Registration successful')
-        return redirect(url_for('login_bp.index'))
+        return redirect(url_for('profile_bp.profile'))
     return render_template('Register.html')

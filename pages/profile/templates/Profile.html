@@ -15,34 +15,39 @@
                 <img src="{{ url_for('static', filename='photo7_blank_user_pic.png') }}" alt="Profile Picture"
                      class="profile-picture">
                 <div class="profile-info-vertical">
-                    <div class="profile-info">
-                        <div>
-                            <label for="firstName">שם פרטי:</label>
-                            <input type="text" id="firstName" name="firstName" value="John">
+                    <form method="post" action="{{ url_for('profile_bp.update_profile') }}">
+                        <div class="profile-info">
+                            <div>
+                                <label for="firstName">שם פרטי:</label>
+                                <input type="text" id="firstName" name="first_name" value="{{ user['first_name'] }}">
+                            </div>
+                            <div>
+                                <label for="lastName">שם משפחה:</label>
+                                <input type="text" id="lastName" name="last_name" value="{{ user['last_name'] }}">
+                            </div>
+                            <div>
+                                <label for="phone">טלפון:</label>
+                                <input type="text" id="phone" name="phone" value="{{ user['phone'] }}">
+                            </div>
+                            <div>
+                                <label for="birthDate">תאריך לידה:</label>
+                                <input type="text" id="birthDate" name="birthdate" value="{{ user['birthdate'] }}">
+                            </div>
+                            <div>
+                                <label for="gender">מין:</label>
+                                <select id="gender" name="gender">
+                                    <option value="male" {% if user['gender'] == 'male' %}selected{% endif %}>זכר</option>
+                                    <option value="female" {% if user['gender'] == 'female' %}selected{% endif %}>נקבה</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="password">סיסמא:</label>
+                                <input type="password" id="password" name="password" value="{{ user['password'] }}">
+                            </div>
                         </div>
-                        <div>
-                            <label for="lastName">שם משפחה:</label>
-                            <input type="text" id="lastName" name="lastName" value="Doe">
-                        </div>
-                        <div>
-                            <label for="birthDate">תאריך לידה:</label>
-                            <input type="text" id="birthDate" name="birthDate" value="01/01/2000">
-                        </div>
-                        <div>
-                            <label for="gender">מין:</label>
-                            <select id="gender" name="gender">
-                                <option value="male" selected>זכר</option>
-                                <option value="female">נקבה</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="password">סיסמא:</label>
-                            <input type="password" id="password" name="password" value="password">
-                        </div>
-                    </div>
-
+                        <button type="submit" class="editPersonalInfo">עדכון פרטים אישיים</button>
+                    </form>
                 </div>
-                <button class="editPersonalInfo" id="editPersonalInfo">עדכון פרטים אישיים</button>
             </div>
             <div class="button-section">
                 <button class="update-button" id="updateGenres">הז'אנרים שלי</button>
@@ -74,22 +79,25 @@
                     <h3>עדכון מידע אישי</h3>
                     <div class="profile-info">
                         <label for="firstName">שם פרטי:</label>
-                        <input type="text" id="firstName" name="firstName">
+                        <input type="text" id="firstName" name="first_name" value="{{ user['first_name'] }}">
 
                         <label for="lastName">שם משפחה:</label>
-                        <input type="text" id="lastName" name="lastName">
+                        <input type="text" id="lastName" name="last_name" value="{{ user['last_name'] }}">
+
+                        <label for="phone">טלפון:</label>
+                        <input type="text" id="phone" name="phone" value="{{ user['phone'] }}">
 
                         <label for="birthDate">תאריך לידה:</label>
-                        <input type="text" id="birthDate" name="birthDate">
+                        <input type="text" id="birthDate" name="birthdate" value="{{ user['birthdate'] }}">
 
                         <label for="gender">מין:</label>
                         <select id="gender" name="gender">
-                            <option value="male">זכר</option>
-                            <option value="female">נקבה</option>
+                            <option value="male" {% if user['gender'] == 'male' %}selected{% endif %}>זכר</option>
+                            <option value="female" {% if user['gender'] == 'female' %}selected{% endif %}>נקבה</option>
                         </select>
 
                         <label for="password">סיסמא:</label>
-                        <input type="password" id="password" name="password">
+                        <input type="password" id="password" name="password" value="{{ user['password'] }}">
 
                         <button class="update-button" id="savePersonalInfo">שמור</button>
                     </div>

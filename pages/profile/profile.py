@@ -13,16 +13,37 @@ profile_bp = Blueprint(
 @profile_bp.route('/profile', methods=['GET', 'POST'])
 def profile():
     user_id = session.get('user_id')
+    if not user_id:
+        return redirect(url_for('login_bp.index'))  # Redirect to login if not logged in
+
     user = get_user_by_email(user_id)
+    if user is None:
+        return redirect(url_for('login_bp.index'))  # Redirect to login if user not found
 
     if request.method == 'POST':
         updated_data = {
             "first_name": request.form['first_name'],
             "last_name": request.form['last_name'],
             "phone": request.form['phone'],
-            "birthdate": request.form['birthdate']
+            "birthdate": request.form['birthdate'],
+            "password": request.form['password'],
+            "gender": request.form['gender']
         }
         update_user(user_id, updated_data)
-        return redirect(url_for('profile.profile'))
+        return redirect(url_for('profile_bp.profile'))
 
-    return render_template('Profile.html', user=user)
+    return render_template('profile.html', user=user)
+
+@profile_bp.route('/update', methods=['POST'])
+def update_profile():
+    user_id = session.get('user_id')
+    updated_data = {
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "phone": request.form['phone'],
+        "birthdate": request.form['birthdate'],
+        "password": request.form['password'],
+        "gender": request.form['gender']
+    }
+    update_user(user_id, updated_data)
+    return redirect(url_for('profile_bp.profile'))
