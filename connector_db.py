@@ -1,41 +1,18 @@
-# import os
-# from pymongo import MongoClient
-# from pymongo.server_api import ServerApi
-#
-# uri = os.environ.get('DB_URI')
-#
-# # Create a new client and connect to the server
-# client = MongoClient(uri, server_api=ServerApi('1'))
-#
-# mydb = client["mydatabase"]
-# users = mydb['users']
-# books = mydb['books']
-#
-# def add_user(user_data):
-#     users.insert_one(user_data)
-#
-# def get_user_by_email(email):
-#     return users.find_one({"email": email})
-#
-# def update_user(email, updated_data):
-#     users.update_one({"email": email}, {"$set": updated_data})
-#
-# def delete_user(email):
-#     users.delete_one({"email": email})
-
-import os
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from dotenv import load_dotenv
+from bson import ObjectId
 
-# Load environment variables from a .env file
-load_dotenv()
-
-# Database connection URI
-uri = os.getenv('DB_URI')
+uri ="mongodb+srv://sagisa:WebProject16@cluster0.o0f3cvg.mongodb.net/Readiculous_WebProject16"
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
 
 # Access the database
 db = client["Readiculous_WebProject16"]
@@ -86,3 +63,28 @@ def get_book_by_title(title):
         print(f"Error fetching book: {e}")
         return None
 
+def get_book_by_id(book_id):
+    try:
+        return books_col.find_one({"_id": book_id})
+    except Exception as e:
+        print(f"Error fetching book: {e}")
+        return None
+
+def update_book(book_id, updated_data):
+    try:
+        books_col.update_one({"_id": book_id}, {"$set": updated_data})
+    except Exception as e:
+        print(f"Error updating book: {e}")
+
+def add_comment(book_id, comment):
+    try:
+        books_col.update_one({"_id": book_id}, {"$push": {"comments": comment}})
+    except Exception as e:
+        print(f"Error adding comment: {e}")
+
+def get_all_books():
+    try:
+        return list(books_col.find())
+    except Exception as e:
+        print(f"Error fetching books: {e}")
+        return []
