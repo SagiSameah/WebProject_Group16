@@ -3,7 +3,7 @@
 {% set page_head_title = 'Home Page' %}
 
 {% block page_head_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/HomePage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('homePage_bp.static', filename='css/HomePage.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
 {% endblock %}
 
@@ -20,8 +20,6 @@
                         <div class="book-slide">
                             <a href="{{ url_for('book_bp.book_details', book_id=book._id) }}">
                                 <img src="{{ url_for('static', filename=book.image_url) }}" alt="{{ book.title }}">
-                                <!-- Debug: Print the image URL -->
-                                <!-- <p>{{ url_for('static', filename=book.image_url) }}</p> -->
                             </a>
                         </div>
                     {% endfor %}
@@ -41,16 +39,12 @@
         <h2>מצא ספרים על ידי סינון:</h2>
         <form id="filtersForm">
             <div class="filter-group">
-                <label for="authorsFilter">מחבר:</label>
-                <div id="authorsFilter" class="filter-checkbox-list">
-                    <!-- Checkboxes will be populated dynamically with JavaScript -->
-                </div>
+                <label for="authorsFilter">סופר:</label>
+                <input type="text" id="authorsFilter" name="authorsFilter">
             </div>
             <div class="filter-group">
                 <label for="genresFilter">ז'אנר:</label>
-                <div id="genresFilter" class="filter-checkbox-list">
-                    <!-- Checkboxes will be populated dynamically with JavaScript -->
-                </div>
+                <input type="text" id="genresFilter" name="genresFilter">
             </div>
             <div class="filter-group">
                 <label for="MinPages">מספר עמודים:</label>
@@ -87,7 +81,6 @@
 {% endblock %}
 
 {% block page_body_js %}
-    <script src="{{ url_for('static', filename='js/HomePage.js') }}"></script>
     <script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
     <script src="{{ url_for('static', filename='js/funFacts.js') }}"></script>
     <script src="{{ url_for('static', filename='js/Filter.js') }}"></script>

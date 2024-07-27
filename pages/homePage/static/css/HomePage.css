@@ -13,10 +13,6 @@
     margin-top: 1rem;
 }
 
-body {
-    background-color: red !important;
-}
-
 .search-container {
     width: 80%;
     text-align: center;
@@ -90,7 +86,6 @@ body {
     border-radius: 5px;
 }
 
-
 .carousel-nav {
     position: absolute;
     top: 40%;
@@ -145,10 +140,10 @@ body {
 
 .filters-section {
     position: fixed;
-    top: 5.5%;
+    top: 7%;
     right: 0;
-    height: 88.5%;
-    margin-left: auto;
+    bottom: 5%;
+    width: 300px;
     padding: 15px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -161,7 +156,7 @@ body {
 
 .filters-section h2 {
     color: #79CDF1;
-    margin-top: 2px;
+    margin-top: 1px;
     font-size: 1.4rem;
     margin-bottom: 10px;
 }
@@ -175,7 +170,7 @@ body {
     max-height: 110px;
     overflow-y: auto;
     border: 1px solid #ccc;
-    padding: 5px;
+    padding: 15px;
 }
 
 .filter-group label {
@@ -184,22 +179,31 @@ body {
     margin-bottom: 1px;
 }
 
+.filter-group input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
 .filter-group.year-group {
     display: flex;
     align-items: center;
 }
 
 .filter-group.year-group input[type="number"] {
-    margin-left: 5px;
-    width: 84px;
+    margin-left: 25px;
+    width: 75px;
 }
 
 .filter-group.year-group label[for="yearMax"] {
-    margin-left: 10px;
+    margin-left: 25px;
 }
 
 .filter-group select, .filter-group input[type="range"] {
-    width: 100%;
+    width: 40%;
     padding: 5px;
     font-size: 1rem;
 }
@@ -228,18 +232,17 @@ button:hover {
 .filter-group.pages-group {
     display: flex;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 2px;
 }
 
 .filter-group.pages-group input[type="number"] {
-    margin-left: 15px;
-    width: 100px;
+    margin-left: 25px;
+    width: 75px;
 }
 
 .filter-group.pages-group label {
-    margin-left: 10px; /* Adjust space between min input and "עד" label */
+    margin-left: 25px;
 }
-
 
 @media screen and (max-width: 1068px) {
     .fun-fact-section, .filters-section {
@@ -247,19 +250,4 @@ button:hover {
         width: auto;
         margin: 10px;
     }
-}
-
-.footer {
-    text-align: right;
-    padding-right: 20px; /* Adjust the value as needed */
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #f0f0f0; /* Optional: to make the footer more visible */
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional: to add a shadow effect */
-}
-
-.footer p {
-    margin: 10px 0; /* Adjust the value as needed */
-    font-family: 'Inknut Antiqua', serif; /* Ensure consistency with your site's font */
 }

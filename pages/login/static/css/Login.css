@@ -40,26 +40,6 @@ main {
     padding: 20px;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #79CDF1;
-    text-align: center;
-    padding: 0;
-}
-
-.footer p {
-    margin: 0;
-    color: white;
-    font-size: 1rem;
-}
-
-.trademark {
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
 .login-box {
     background-color: #79CDF1;
     padding: 1.3rem;
