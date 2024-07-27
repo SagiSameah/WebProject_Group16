@@ -15,7 +15,7 @@
 #     return render_template('HomePage.html')
 
 from flask import Blueprint, render_template
-from connector_db import get_collection
+from connector_db import get_collection, get_all_books
 
 # HomePage blueprint definition
 homePage_bp = Blueprint(
@@ -28,5 +28,5 @@ homePage_bp = Blueprint(
 
 @homePage_bp.route('/home')
 def homePage():
-    books = get_collection('books').find()
+    books = get_all_books()
     return render_template('HomePage.html', books=books)

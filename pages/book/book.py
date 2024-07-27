@@ -1,23 +1,5 @@
-# from flask import Blueprint, render_template
-# from connector_db import books
-#
-# # book blueprint definition
-# book_bp = Blueprint(
-#     'book',
-#     __name__,
-#     static_folder='static',
-#     static_url_path='/book',
-#     template_folder='templates'
-# )
-#
-# # Routes
-# @book_bp.route('/', methods=['GET'])
-# def book():
-#     return render_template('book.html')
-
-from flask import Blueprint, render_template, request, redirect, url_for, session
-from connector_db import get_collection
-from pip._internal.network import session
+from flask import Blueprint, render_template, request, session, redirect, url_for
+from connector_db import get_book_by_id, update_book, add_comment
 
 # Book blueprint definition
 book_bp = Blueprint(
@@ -28,26 +10,28 @@ book_bp = Blueprint(
     template_folder='templates'
 )
 
-@book_bp.route('/book/<book_id>', methods=['GET', 'POST'])
+@book_bp.route('/<book_id>', methods=['GET', 'POST'])
 def book_details(book_id):
-    books = get_collection('books')
-    comments = get_collection('comments')
-
-    book = books.find_one({"_id": book_id})
-    book_comments = comments.find({"book_id": book_id})
+    book = get_book_by_id(book_id)
+    if not book:
+        return redirect(url_for('homePage_bp.homePage'))  # Redirect to homepage if book not found
 
     if request.method == 'POST':
-        comment_text = request.form['comment']
-        rating = int(request.form['rating'])
-        user_id = session.get('user_id')
+        if 'comment' in request.form:
+            comment = {
+                "user_id": session.get('user_id'),
+                "comment": request.form['comment'],
+                "timestamp": request.form.get('timestamp', '')  # Get timestamp or use an empty string
+            }
+            add_comment(book_id, comment)
+        elif 'rating' in request.form:
+            new_rating = float(request.form['rating'])
+            updated_data = {
+                "rating": (book['rating'] * book['raters_count'] + new_rating) / (book['raters_count'] + 1),
+                "raters_count": book['raters_count'] + 1
+            }
+            update_book(book_id, updated_data)
+        return redirect(url_for('book_bp.book_details', book_id=book_id))
 
-        comment_data = {
-            "book_id": book_id,
-            "user_id": user_id,
-            "comment": comment_text,
-            "rating": rating
-        }
-        comments.insert_one(comment_data)
-        return redirect(url_for('book.book_details', book_id=book_id))
-
-    return render_template('Book.html', book=book, comments=book_comments)
+    # Render the book details page
+    return render_template('book.html', book=book)
