@@ -3,13 +3,23 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import logging
 from logging import FileHandler, Formatter
+import sys
+import os
+
+# from dotenv import load_dotenv
+# load_dotenv()
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pages'))
 
 app = Flask(__name__)
-app.secret_key = '314'
 app.config.from_pyfile('settings.py')
 
+app.secret_key = app.config['SECRET_KEY']
+app.config['MONGO_URI'] = app.config['DB_URI']
+
 # MongoDB Connection
-uri = "mongodb+srv://sagisa:WebProject16@cluster0.o0f3cvg.mongodb.net/Readiculous_WebProject16"
+uri = app.config['MONGO_URI']
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 # Ensure the correct database and collection references
@@ -32,8 +42,8 @@ from pages.about.about import about_bp
 from pages.profile.profile import profile_bp
 
 # Blueprint Registration
-app.register_blueprint(register_bp)
-app.register_blueprint(login_bp)
+app.register_blueprint(register_bp, url_prefix='/register')
+app.register_blueprint(login_bp, url_prefix='/login')
 app.register_blueprint(homePage_bp)
 app.register_blueprint(book_bp)
 app.register_blueprint(about_bp)
@@ -46,10 +56,12 @@ if not app.debug:
     file_handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
     app.logger.addHandler(file_handler)
 
+
 @app.route('/show_collections')
 def show_collections():
     collections = db.list_collection_names()
     return f"Collections: {', '.join(collections)}"
+
 
 @app.route('/add_dummy_data')
 def add_dummy_data():
@@ -69,6 +81,10 @@ def add_dummy_data():
         "year": 2023
     })
     return "Dummy data added!"
+
+@app.route('/')
+def index():
+        return render_template('Login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

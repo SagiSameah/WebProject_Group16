@@ -26,22 +26,19 @@ def login_func(login_email, login_password):
 def index():
     return render_template('Login.html')
 
-
 @login_bp.route('/login', methods=['GET', 'POST'])
 def submit():
     if request.method == 'GET':
         return redirect(url_for('login_bp.index'))
-    # Handle login action
     if request.method == 'POST':
         useremail = request.form['email']
         password = request.form['password']
-        myquery = {"email": useremail}  # Assuming 'email' is the field name in the database
+        myquery = {"email": useremail}
         user = users_col.find_one(myquery)
         if user is not None:
             if password == user['password']:
                 session['user_id'] = useremail
-                print(session['user_id'])
-                return redirect(url_for('homePage_bp.homePage'))  # Adjust this as necessary
+                return redirect(url_for('homePage_bp.homePage'))
             return render_template('Login.html', error='Incorrect username or password')
         return render_template('Login.html', error='Incorrect username or password')
     return redirect(url_for('login_bp.index'))

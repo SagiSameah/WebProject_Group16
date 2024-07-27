@@ -3,7 +3,7 @@
 {% set page_head_title = 'Login' %}
 
 {% block page_head_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('login_bp.static', filename='css/login.css') }}"/>
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
 {% endblock %}
 
@@ -31,7 +31,7 @@
         </div>
         <p class="register-prompt">עוד לא רשום? <a href="{{ url_for('register_bp.register') }}" class="register-link">הירשם כאן</a></p>
         <div class="quote-section">
-            <img src="../open%20book%20gif.gif" alt="Open Book">
+        <img src="{{ url_for('static', filename='media/open book gif.gif') }}" alt="Open Book">
             <p class="quote">“The more that you read, the more you will know. The more you will know, the more places you'll go”<br>
             Dr. Seuss -</p>
         </div>
@@ -39,5 +39,5 @@
 {% endblock %}
 
 {% block page_body_js %}
-    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script src="{{ url_for('login_bp.static', filename='js/login.js') }}"></script>
 {% endblock %}

@@ -9,6 +9,11 @@ register_bp = Blueprint(
     static_url_path='/register/static',
     template_folder='templates'
 )
+
+@register_bp.route('/', methods=['GET'])
+def index():
+    return render_template('register.html')
+
 @register_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -21,11 +26,11 @@ def register():
 
         # Check if passwords match
         if password != confirm_password:
-            return render_template('Register.html', error="Passwords do not match")
+            return render_template('register.html', error="Passwords do not match")
 
         # Check if user already exists
         if get_user_by_email(email):
-            return render_template('Register.html', error="User already exists")
+            return render_template('register.html', error="User already exists")
 
         user_data = {
             "email": email,
@@ -37,4 +42,4 @@ def register():
         add_user(user_data)
         flash('Registration successful')
         return redirect(url_for('profile_bp.profile'))
-    return render_template('Register.html')
+    return render_template('register.html')

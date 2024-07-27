@@ -3,7 +3,7 @@
 {% set page_head_title = 'Register' %}
 
 {% block page_head_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('register_bp.static', filename='css/Register.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Inter&family=Inknut+Antiqua:wght@400;700&display=swap"
           rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet"/>
@@ -56,6 +56,6 @@
 {% endblock %}
 
 {% block page_body_js %}
-    <script src="{{ url_for('static', filename='js/Register.js') }}"></script>
+    <script src="{{ url_for('register_bp.static', filename='js/Register.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 {% endblock %}

@@ -3,7 +3,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Secret key setting from .env for Flask sessions
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+DB_URI = os.getenv('DB_URI', 'mongodb://localhost:27017/default_db')
 
 # DB base configuration from .env for modularity and security reasons
 DB = {

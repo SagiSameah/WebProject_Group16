@@ -13,6 +13,10 @@
     margin-top: 1rem;
 }
 
+body {
+    background-color: red !important;
+}
+
 .search-container {
     width: 80%;
     text-align: center;
@@ -243,4 +247,19 @@ button:hover {
         width: auto;
         margin: 10px;
     }
+}
+
+.footer {
+    text-align: right;
+    padding-right: 20px; /* Adjust the value as needed */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f0f0f0; /* Optional: to make the footer more visible */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional: to add a shadow effect */
+}
+
+.footer p {
+    margin: 10px 0; /* Adjust the value as needed */
+    font-family: 'Inknut Antiqua', serif; /* Ensure consistency with your site's font */
 }
