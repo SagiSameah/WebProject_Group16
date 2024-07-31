@@ -47,6 +47,9 @@ Order of actions for a user:
 6. ![image](https://github.com/user-attachments/assets/5b7035f8-59e8-4a19-aa2c-4c3be8a91346)
 
 7. In the home page they are also being represented to some fun facts in order to make their time on the website more enjoyable.
-8. When they press on a book's photo, they are redirected to the book's page, where they can find data on the book, rate it, and leave a comment for other users to read.
+8. When they press on a book's photo, they are redirected to the book's page, where they can find data on the book, rate it, and leave a comment for other users to read
+
+![image](https://github.com/user-attachments/assets/0ead4ae1-a532-489c-9e9a-2e8126dd4e71)
+
 
 
