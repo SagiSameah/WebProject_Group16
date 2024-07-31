@@ -24,11 +24,29 @@ Profile - In this page the user can update their details. They can re-choose the
 Order of actions for a user:
 1. First, the user enters the login page (assuming they are already registered).
 
+![image](https://github.com/user-attachments/assets/8ac4ac3e-f3cb-46ff-8151-e635dceaaf38)
+
+
+2. If they are not registered, they can go to the registration page:
+
+ ![image](https://github.com/user-attachments/assets/c3254c2e-facb-4cd8-a61e-58ff51f878e2)
+
 
 3. Then, after logging in, the user is redirected to their profile page - where they can update their personal data or their favorite genres and authors.
+
+![image](https://github.com/user-attachments/assets/00f42a58-a33b-48ff-96a1-fb9c71f96e9a)
+
+
 4. Then, they can navigate to the home page from the navigation bar.
+
+![image](https://github.com/user-attachments/assets/b917d235-9a37-4ee1-8d2c-1e07e7a3c5b1)
+
+
 5. In the home page, they can search for new books with the filter on the fight side of the page or scroll the carousel in the home page and select the book they would like to learn more about.
 
 6. ![image](https://github.com/user-attachments/assets/5b7035f8-59e8-4a19-aa2c-4c3be8a91346)
 
-7. In the home page they are also being represented to some fun facts in order to 
+7. In the home page they are also being represented to some fun facts in order to make their time on the website more enjoyable.
+8. When they press on a book's photo, they are redirected to the book's page, where they can find data on the book, rate it, and leave a comment for other users to read.
+
+
