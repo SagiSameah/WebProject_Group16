@@ -3,8 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const email = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
+
+        if (!validateEmail(email)) {
+            showModal("Invalid email format.");
+            return;
+        }
+
+        if (!validatePassword(password)) {
+            showModal("Password must be at least 8 characters long.");
+            return;
+        }
 
         fetch("/login", {
             method: "POST",
@@ -25,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(error => {
-            console.error("Error:", error);
+            console.error('Error:', error);
             showModal("An error occurred. Please try again.");
         });
     });
@@ -38,14 +48,26 @@ function showModal(message) {
 
     modalMessage.textContent = message;
     modal.style.display = "block";
+    modal.setAttribute('aria-hidden', 'false');
 
     closeModal.onclick = function() {
         modal.style.display = "none";
+        modal.setAttribute('aria-hidden', 'true');
     };
 
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
+            modal.setAttribute('aria-hidden', 'true');
         }
     };
+}
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function validatePassword(password) {
+    return password.length >= 8;
 }

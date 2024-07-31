@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from connector_db import add_user, get_user_by_email
+from datetime import datetime
 
 # Register blueprint definition
 register_bp = Blueprint(
@@ -24,13 +25,30 @@ def register():
         last_name = request.form['lastName']
         birthdate = request.form['birthDate']
 
+        # Debugging print statements
+        print("Received form data:", email, password, confirm_password, first_name, last_name, birthdate)
+
         # Check if passwords match
         if password != confirm_password:
+            print("Passwords do not match")
             return render_template('register.html', error="Passwords do not match")
 
         # Check if user already exists
         if get_user_by_email(email):
+            print("User already exists")
             return render_template('register.html', error="User already exists")
+
+        # Validate birthdate
+        try:
+            birth_date_obj = datetime.strptime(birthdate, "%d/%m/%Y")
+            min_date = datetime(1900, 1, 1)
+            max_date = datetime(2019, 12, 31)
+            if not (min_date <= birth_date_obj <= max_date):
+                print("Invalid birthdate range")
+                return render_template('register.html', error="תאריך הלידה שהוזן לא נכון (אלא אם גילכם הוא 4 או מעל 120 😉)")
+        except ValueError:
+            print("Invalid birthdate format")
+            return render_template('register.html', error="Invalid birthdate format")
 
         user_data = {
             "email": email,
@@ -41,5 +59,7 @@ def register():
         }
         add_user(user_data)
         flash('Registration successful')
+        print("User registered successfully:", user_data)  # Debugging print statement
+        session['user_id'] = email  # Set the session user_id here
         return redirect(url_for('profile_bp.profile'))
     return render_template('register.html')

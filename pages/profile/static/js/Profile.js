@@ -1,47 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
     const genresPopup = document.getElementById('genresPopup');
     const authorsPopup = document.getElementById('authorsPopup');
-    const personalInfoPopup = document.getElementById('personalInfoPopup');
     const genresOptions = document.getElementById('genresOptions');
     const authorsOptions = document.getElementById('authorsOptions');
     const selectedGenresContainer = document.getElementById('selectedGenresContainer');
     const selectedAuthorsContainer = document.getElementById('selectedAuthorsContainer');
     const genresErrorMsg = document.getElementById('genresErrorMsg');
     const authorsErrorMsg = document.getElementById('authorsErrorMsg');
-    const displayFirstName = document.getElementById('displayFirstName');
-    const displayLastName = document.getElementById('displayLastName');
-    const displayEmail = document.getElementById('displayEmail');
-    const displayBirthDate = document.getElementById('displayBirthDate');
-    const displayGender = document.getElementById('displayGender');
-    const displayPassword = document.getElementById('displayPassword');
-    const firstNameInput = document.getElementById('firstName');
-    const lastNameInput = document.getElementById('lastName');
-    const emailInput = document.getElementById('email');
-    const birthDateInput = document.getElementById('birthDate');
-    const genderSelect = document.getElementById('gender');
-    const passwordInput = document.getElementById('password');
+    const updateGenresButton = document.getElementById('updateGenres');
+    const updateAuthorsButton = document.getElementById('updateAuthors');
+    const closeGenresPopup = document.getElementById('closeGenresPopup');
+    const closeAuthorsPopup = document.getElementById('closeAuthorsPopup');
+    const saveGenresButton = document.getElementById('saveGenres');
+    const saveAuthorsButton = document.getElementById('saveAuthors');
 
-    const genres = ["פנטזיה", "מתח", "רומנטיקה", "מדע בדיוני", "פילוסופיה", "פרוזה", "ביוגרפיה"];
-    const authors = ["ש\"י עגנון", "דוד גרוסמן", "צרויה שלו", "עמוס עוז", "שגיא שמח", "דניאל נוס", "אלונה קמחי"];
+    const editButton = document.getElementById('editPersonalInfoButton');
+    const saveButton = document.getElementById('savePersonalInfoButton');
+    const showPasswordCheckbox = document.getElementById('showPassword');
+    const showPasswordLabel = document.getElementById('showPasswordLabel');
+    const inputFields = document.querySelectorAll('#profileForm input, #profileForm select');
+
+    // Initially disable input fields
+    inputFields.forEach(input => {
+        input.disabled = true;
+    });
+
+    editButton.addEventListener('click', () => {
+        inputFields.forEach(input => {
+            input.disabled = false;
+        });
+        editButton.style.display = 'none';
+        saveButton.style.display = 'block';
+        showPasswordCheckbox.style.display = 'inline';
+        showPasswordLabel.style.display = 'inline';
+    });
+
+    showPasswordCheckbox.addEventListener('change', () => {
+        const passwordField = document.getElementById('password');
+        if (showPasswordCheckbox.checked) {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+
     const selectedGenres = new Set();
     const selectedAuthors = new Set();
 
-    function populateOptions(container, items, selectedItems, errorMsg) {
-        container.innerHTML = '';
-        errorMsg.textContent = '';
-        const sortedItems = items.sort((a, b) => {
-            if (selectedItems.has(a) && !selectedItems.has(b)) return -1;
-            if (!selectedItems.has(a) && selectedItems.has(b)) return 1;
-            return a.localeCompare(b);
-        });
-
-        for (const item of sortedItems) {
-            const li = document.createElement('li');
-            li.textContent = item;
-            if (selectedItems.has(item)) {
-                li.classList.add('selected');
-            }
+    function populateOptions(container, selectedItems, errorMsg) {
+        container.querySelectorAll('li').forEach(li => {
             li.addEventListener('click', () => {
+                const item = li.textContent.split(' (')[0];
                 if (selectedItems.has(item)) {
                     selectedItems.delete(item);
                     li.classList.remove('selected');
@@ -51,81 +60,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     errorMsg.textContent = "ניתן לבחור עד 5 אפשרויות";
                 }
-                populateOptions(container, items, selectedItems, errorMsg);
+                populateOptions(container, selectedItems, errorMsg);
             });
-            container.appendChild(li);
-        }
+        });
     }
 
-    document.getElementById('editPersonalInfo').addEventListener('click', () => {
-        personalInfoPopup.style.display = 'block';
-        firstNameInput.value = displayFirstName.textContent;
-        lastNameInput.value = displayLastName.textContent;
-        emailInput.value = displayEmail.textContent;
-        birthDateInput.value = displayBirthDate.textContent;
-        genderSelect.value = displayGender.textContent === 'זכר' ? 'male' : 'female';
-        passwordInput.value = displayPassword.textContent;
-    });
-
-    document.getElementById('savePersonalInfo').addEventListener('click', () => {
-        if (firstNameInput.value) displayFirstName.textContent = firstNameInput.value;
-        if (lastNameInput.value) displayLastName.textContent = lastNameInput.value;
-        if (emailInput.value) displayEmail.textContent = emailInput.value;
-        if (birthDateInput.value) displayBirthDate.textContent = birthDateInput.value;
-        if (genderSelect.value) displayGender.textContent = genderSelect.value === 'male' ? 'זכר' : 'נקבה';
-        if (passwordInput.value) displayPassword.textContent = passwordInput.value;
-        personalInfoPopup.style.display = 'none';
-    });
-
-    document.getElementById('updateGenres').addEventListener('click', () => {
+    updateGenresButton.addEventListener('click', () => {
         genresPopup.style.display = 'block';
-        populateOptions(genresOptions, genres, selectedGenres, genresErrorMsg);
+        populateOptions(genresOptions, selectedGenres, genresErrorMsg);
     });
 
-    document.getElementById('updateAuthors').addEventListener('click', () => {
+    updateAuthorsButton.addEventListener('click', () => {
         authorsPopup.style.display = 'block';
-        populateOptions(authorsOptions, authors, selectedAuthors, authorsErrorMsg);
+        populateOptions(authorsOptions, selectedAuthors, authorsErrorMsg);
     });
 
-    document.getElementById('closeGenresPopup').addEventListener('click', () => {
+    closeGenresPopup.addEventListener('click', () => {
         genresPopup.style.display = 'none';
-        updateSelectedItemsDisplay(selectedGenresContainer, selectedGenres);
     });
 
-    document.getElementById('closeAuthorsPopup').addEventListener('click', () => {
+    closeAuthorsPopup.addEventListener('click', () => {
         authorsPopup.style.display = 'none';
-        updateSelectedItemsDisplay(selectedAuthorsContainer, selectedAuthors);
     });
 
-    document.getElementById('closePersonalInfoPopup').addEventListener('click', () => {
-        personalInfoPopup.style.display = 'none';
+    saveGenresButton.addEventListener('click', () => {
+        genresPopup.style.display = 'none';
+        updateSelectedItemsDisplay(selectedGenresContainer, selectedGenres, "הז'אנרים שלי: ");
+        document.getElementById('selectedGenres').value = Array.from(selectedGenres).join(',');
+
+        // Send the updated list to the server
+        fetch('{{ url_for("profile_bp.update_favorites") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                type: 'genres',
+                data: Array.from(selectedGenres)
+            }),
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log("Genres updated successfully");
+                } else {
+                    console.error("Error updating genres");
+                }
+            });
     });
 
-    document.getElementById('editPersonalInfo').onclick = function () {
-        document.getElementById('personalInfoPopup').style.display = 'block';
-    }
-    document.getElementById('closePersonalInfoPopup').onclick = function () {
-        document.getElementById('personalInfoPopup').style.display = 'none';
-    }
-    window.onclick = function (event) {
-        if (event.target == document.getElementById('personalInfoPopup')) {
-            document.getElementById('personalInfoPopup').style.display = 'none';
-        }
-    }
+    saveAuthorsButton.addEventListener('click', () => {
+        authorsPopup.style.display = 'none';
+        updateSelectedItemsDisplay(selectedAuthorsContainer, selectedAuthors, "הסופרים שלי: ");
+        document.getElementById('selectedAuthors').value = Array.from(selectedAuthors).join(',');
 
-    function updateSelectedItemsDisplay(container, selectedItems) {
-        container.innerHTML = Array.from(selectedItems).map(item => `<span class="selected-item">${item}</span>`).join(', ');
-    }
+        // Send the updated list to the server
+        fetch('{{ url_for("profile_bp.update_favorites") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                type: 'authors',
+                data: Array.from(selectedAuthors)
+            }),
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log("Authors updated successfully");
+                } else {
+                    console.error("Error updating authors");
+                }
+            });
+    });
 
-    window.onclick = function (event) {
-        if (event.target === genresPopup) {
-            genresPopup.style.display = "none";
-            updateSelectedItemsDisplay(selectedGenresContainer, selectedGenres);
-        } else if (event.target === authorsPopup) {
-            authorsPopup.style.display = "none";
-            updateSelectedItemsDisplay(selectedAuthorsContainer, selectedAuthors);
-        } else if (event.target === personalInfoPopup) {
-            personalInfoPopup.style.display = "none";
-        }
+    function updateSelectedItemsDisplay(container, selectedItems, label) {
+        container.innerHTML = label + Array.from(selectedItems).map(item => `<span class="selected-item">${item}</span>`).join(', ');
     }
 });

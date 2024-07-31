@@ -9,14 +9,18 @@
 
 .quote {
     font-family: 'Inknut Antiqua', serif;
-    font-size: 1.5rem;
-    margin-top: 1rem;
+    font-size: 1.2rem;
+    /*margin-top: 1rem;*/
+}
+
+.body {
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .search-container {
     width: 80%;
     text-align: center;
-    margin: 20px auto;
 }
 
 #searchBox {
@@ -27,7 +31,7 @@
     font-size: 16px;
     color: #333;
     background-color: #f0f0f0;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
 }
 
 #searchBox::placeholder {
@@ -105,11 +109,11 @@
 }
 
 .prev {
-    left: 4px;
+    left: 560px;
 }
 
 .next {
-    right: 4px;
+    right: 560px;
 }
 
 .fun-fact-section {
@@ -250,4 +254,30 @@ button:hover {
         width: auto;
         margin: 10px;
     }
+}
+
+.hidden {
+    display: none;
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+.book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.book-item {
+    width: 150px;
+    text-align: center;
+}
+
+.book-item img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 5px;
 }

@@ -58,9 +58,8 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     background-color: #F5F5F5;
-    /*padding-top: 120px;*/
     overflow-x: hidden;
-    /*overflow-y: hidden;*/
+    overflow-y: hidden;
 }
 
 main {
@@ -68,6 +67,7 @@ main {
     display: flex;
     justify-content: center; /* Ensure content starts at the top */
     align-items: center; /* Center content horizontally */
+    padding-top: 30px;
 }
 
 footer {

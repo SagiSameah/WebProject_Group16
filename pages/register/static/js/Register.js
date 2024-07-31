@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastNameInput = document.getElementById("lastName");
     const passwordInput = document.getElementById("password");
     const confirmPasswordInput = document.getElementById("confirmPassword");
+    const birthDateInput = document.getElementById("birthDate");
     const form = document.getElementById("registerForm");
 
     firstNameInput.addEventListener('input', function () {
@@ -25,21 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const errorElement = document.getElementById(errorElementId);
         if (containsHebrew && containsEnglish) {
-            errorElement.textContent = 'יש להזין שם פרטי ומשפחה בשפה אחת בלבד (עברית או אנגלית)';
+            errorElement.textContent = '×™×© ×œ×”×–×™×Ÿ ×©× ×¤×¨×˜×™ ×•×ž×©×¤×—×” ×‘×©×¤×” ××—×ª ×‘×œ×‘×“ (×¢×‘×¨×™×ª ××• ×× ×’×œ×™×ª)';
         } else {
             errorElement.textContent = '';
         }
     }
 
     form.addEventListener("submit", (event) => {
-        event.preventDefault();
         if (!validateForm()) {
+            event.preventDefault();
             return;
         }
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "{{ url_for('home') }}";
     });
-
 
     function validateEmail() {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,6 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return confirmPasswordInput.value === passwordInput.value && confirmPasswordInput.value !== "";
     }
 
+    function validateBirthDate() {
+        const birthDatePattern = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+        if (!birthDatePattern.test(birthDateInput.value)) {
+            return false;
+        }
+
+        const [_, day, month, year] = birthDateInput.value.match(birthDatePattern);
+        const birthDate = new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`);
+        const minDate = new Date('1900-01-01');
+        const maxDate = new Date('2019-12-31');
+        return birthDate >= minDate && birthDate <= maxDate;
+    }
+
     function validateForm() {
         let errorMessage = "";
         if (!validateEmail()) {
@@ -64,7 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
             errorMessage += "Password must be at least 8 characters and contain an uppercase letter, lowercase letter, and one number\n";
         }
         if (!validateConfirmPassword()) {
-            errorMessage += "\nPasswords do not match\n";
+            errorMessage += "Passwords do not match\n";
+        }
+        if (!validateBirthDate()) {
+            errorMessage += "×ª××¨×™×š ×”×œ×™×“×” ×©×”×•×–×Ÿ ×œ× × ×›×•×Ÿ (××œ× ×× ××ª× ×‘× ×™ 4 ××• ×ž×¢×œ 120 ðŸ˜‰)\n";
         }
         if (!firstNameInput.value.trim() || !lastNameInput.value.trim()) {
             errorMessage += "Please fill in all required fields.\n";
@@ -110,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
         selectable: true,
         locale: 'he',
         dateClick: function (info) {
-            const birthDateInput = document.getElementById('birthDate');
             const date = new Date(info.dateStr);
             const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
             birthDateInput.value = formattedDate;
