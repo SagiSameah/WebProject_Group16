@@ -21,3 +21,14 @@ Book page - In this page users can receive info regarding the book they clicked 
 
 Profile - In this page the user can update their details. They can re-choose their favorite authors and genres of books. They can update their data in the website as well (only works when pressing first on the 'עדכון' button).
 
+Order of actions for a user:
+1. First, the user enters the login page (assuming they are already registered).
+
+
+3. Then, after logging in, the user is redirected to their profile page - where they can update their personal data or their favorite genres and authors.
+4. Then, they can navigate to the home page from the navigation bar.
+5. In the home page, they can search for new books with the filter on the fight side of the page or scroll the carousel in the home page and select the book they would like to learn more about.
+
+6. ![image](https://github.com/user-attachments/assets/5b7035f8-59e8-4a19-aa2c-4c3be8a91346)
+
+7. In the home page they are also being represented to some fun facts in order to 
